@@ -321,6 +321,4 @@ MIT License - see LICENSE file for details
 **🚀 Built with modern web technologies for the next generation of coding education**
 
 **Tech Stack**: React 18, Vite, Framer Motion, Tailwind CSS, Node.js, Express, Docker, Monaco Editor
-
-**Live Demo**: [Your deployment URL here]
 **Repository**: https://github.com/SaravanaKrishnan16/Docker-Judge.git
