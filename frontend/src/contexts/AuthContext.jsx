@@ -122,6 +122,28 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('isAuthenticated');
   };
 
+  const changePassword = (currentPassword, newPassword) => {
+    if (!user) {
+      throw new Error('No user logged in');
+    }
+
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    const userIndex = users.findIndex(u => u.email === user.email);
+    
+    if (userIndex === -1) {
+      throw new Error('User not found');
+    }
+
+    if (users[userIndex].password !== currentPassword) {
+      throw new Error('Current password is incorrect');
+    }
+
+    users[userIndex].password = newPassword;
+    localStorage.setItem('users', JSON.stringify(users));
+    
+    return true;
+  };
+
   const logout = () => {
     setUser(null);
     setSolvedProblems([]);
@@ -137,6 +159,7 @@ export const AuthProvider = ({ children }) => {
     logout,
     signup,
     deleteAccount,
+    changePassword,
     solvedProblems,
     solvedCount: solvedProblems.length,
     addSolvedProblem,

@@ -14,10 +14,17 @@ import {
 } from '@heroicons/react/24/outline';
 
 const ProfilePage = () => {
-  const { user, logout, deleteAccount, solvedProblems, solvedCount } = useAuth();
+  const { user, logout, deleteAccount, changePassword, solvedProblems, solvedCount } = useAuth();
   const { theme } = useTheme();
   const navigate = useNavigate();
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showPasswordModal, setShowPasswordModal] = useState(false);
+  const [passwordData, setPasswordData] = useState({
+    currentPassword: '',
+    newPassword: '',
+    confirmPassword: ''
+  });
+  const [passwordError, setPasswordError] = useState('');
   const [problems, setProblems] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -39,6 +46,30 @@ const ProfilePage = () => {
 
   const totalProblems = problems.length;
   const successRate = user?.totalSubmissions > 0 ? Math.round((solvedCount / user.totalSubmissions) * 100) : 0;
+
+  const handleChangePassword = async (e) => {
+    e.preventDefault();
+    setPasswordError('');
+
+    if (passwordData.newPassword !== passwordData.confirmPassword) {
+      setPasswordError('New passwords do not match');
+      return;
+    }
+
+    if (passwordData.newPassword.length < 6) {
+      setPasswordError('New password must be at least 6 characters');
+      return;
+    }
+
+    try {
+      changePassword(passwordData.currentPassword, passwordData.newPassword);
+      setShowPasswordModal(false);
+      setPasswordData({ currentPassword: '', newPassword: '', confirmPassword: '' });
+      alert('Password changed successfully!');
+    } catch (error) {
+      setPasswordError(error.message);
+    }
+  };
 
   const handleDeleteAccount = () => {
     deleteAccount();
@@ -240,6 +271,7 @@ const ProfilePage = () => {
             className="grid grid-cols-1 md:grid-cols-3 gap-4"
           >
             <motion.button
+              onClick={() => setShowPasswordModal(true)}
               whileHover={{ scale: 1.05, boxShadow: '0 10px 30px rgba(59, 130, 246, 0.3)' }}
               whileTap={{ scale: 0.95 }}
               className="flex items-center justify-center space-x-2 p-4 rounded-xl bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-medium transition-all duration-300"
@@ -274,6 +306,118 @@ const ProfilePage = () => {
           </motion.div>
         </div>
       </div>
+
+      {/* Change Password Modal */}
+      {showPasswordModal && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          onClick={() => setShowPasswordModal(false)}
+        >
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.8, opacity: 0 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+            className={`p-8 rounded-2xl backdrop-blur-xl border max-w-md w-full ${
+              theme === 'dark' 
+                ? 'bg-slate-800/90 border-slate-700/50' 
+                : 'bg-white/90 border-gray-200/50'
+            }`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="text-center mb-6">
+              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
+                <KeyIcon className="w-8 h-8 text-blue-600 dark:text-blue-400" />
+              </div>
+              <h3 className={`text-xl font-bold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
+                Change Password
+              </h3>
+            </div>
+            
+            <form onSubmit={handleChangePassword} className="space-y-4">
+              <div>
+                <input
+                  type="password"
+                  placeholder="Current Password"
+                  value={passwordData.currentPassword}
+                  onChange={(e) => setPasswordData({...passwordData, currentPassword: e.target.value})}
+                  className={`w-full p-3 rounded-xl border transition-all duration-300 ${
+                    theme === 'dark'
+                      ? 'bg-slate-700/50 border-slate-600 text-white placeholder-gray-400 focus:border-blue-500'
+                      : 'bg-white/70 border-gray-300 text-gray-900 placeholder-gray-500 focus:border-blue-500'
+                  } focus:outline-none focus:ring-2 focus:ring-blue-500/20`}
+                  required
+                />
+              </div>
+              <div>
+                <input
+                  type="password"
+                  placeholder="New Password"
+                  value={passwordData.newPassword}
+                  onChange={(e) => setPasswordData({...passwordData, newPassword: e.target.value})}
+                  className={`w-full p-3 rounded-xl border transition-all duration-300 ${
+                    theme === 'dark'
+                      ? 'bg-slate-700/50 border-slate-600 text-white placeholder-gray-400 focus:border-blue-500'
+                      : 'bg-white/70 border-gray-300 text-gray-900 placeholder-gray-500 focus:border-blue-500'
+                  } focus:outline-none focus:ring-2 focus:ring-blue-500/20`}
+                  required
+                />
+              </div>
+              <div>
+                <input
+                  type="password"
+                  placeholder="Confirm New Password"
+                  value={passwordData.confirmPassword}
+                  onChange={(e) => setPasswordData({...passwordData, confirmPassword: e.target.value})}
+                  className={`w-full p-3 rounded-xl border transition-all duration-300 ${
+                    theme === 'dark'
+                      ? 'bg-slate-700/50 border-slate-600 text-white placeholder-gray-400 focus:border-blue-500'
+                      : 'bg-white/70 border-gray-300 text-gray-900 placeholder-gray-500 focus:border-blue-500'
+                  } focus:outline-none focus:ring-2 focus:ring-blue-500/20`}
+                  required
+                />
+              </div>
+              
+              {passwordError && (
+                <div className="text-red-500 text-sm text-center">
+                  {passwordError}
+                </div>
+              )}
+              
+              <div className="flex space-x-4 pt-4">
+                <motion.button
+                  type="button"
+                  onClick={() => {
+                    setShowPasswordModal(false);
+                    setPasswordData({ currentPassword: '', newPassword: '', confirmPassword: '' });
+                    setPasswordError('');
+                  }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className={`flex-1 py-3 px-4 rounded-xl font-medium transition-all duration-300 ${
+                    theme === 'dark' 
+                      ? 'bg-slate-700 text-white hover:bg-slate-600' 
+                      : 'bg-gray-200 text-gray-900 hover:bg-gray-300'
+                  }`}
+                >
+                  Cancel
+                </motion.button>
+                <motion.button
+                  type="submit"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex-1 py-3 px-4 rounded-xl bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-medium transition-all duration-300"
+                >
+                  Change Password
+                </motion.button>
+              </div>
+            </form>
+          </motion.div>
+        </motion.div>
+      )}
 
       {/* Delete Confirmation Modal */}
       {showDeleteModal && (

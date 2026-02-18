@@ -63,21 +63,6 @@ const Footer = () => {
             }`}>
               Advanced online code judge platform for mastering algorithms and data structures. Execute, learn, and excel in your coding journey.
             </p>
-            <div className="flex space-x-4">
-              <motion.a
-                href="https://github.com"
-                whileHover={{ scale: 1.1, y: -2 }}
-                className={`w-10 h-10 rounded-lg flex items-center justify-center transition-colors ${
-                  theme === 'dark' 
-                    ? 'bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white'
-                    : 'bg-gray-200 hover:bg-gray-300 text-gray-600 hover:text-gray-900'
-                }`}
-              >
-                <span className="text-sm font-medium">
-                  GH
-                </span>
-              </motion.a>
-            </div>
           </div>
 
           {/* Footer Links */}
@@ -114,7 +99,20 @@ const Footer = () => {
           <div className={`text-sm mb-4 md:mb-0 flex items-center ${
             theme === 'dark' ? 'text-slate-400' : 'text-gray-600'
           }`}>
-            © 2026 DockerJudge. Made with 
+            © 2026 DockerJudge. Developed by 
+            <a 
+              href="https://www.linkedin.com/in/saravana-krishnan-j-3a7080299/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className={`mx-1 transition-colors ${
+                theme === 'dark' 
+                  ? 'text-indigo-400 hover:text-indigo-300'
+                  : 'text-indigo-600 hover:text-indigo-500'
+              }`}
+            >
+              Saravana Krishnan J
+            </a>
+            with 
             <motion.span
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ duration: 1, repeat: Infinity }}

@@ -40,17 +40,6 @@ const Footer = () => {
               Simple online code judge for Python and Java. 
               Free and open source.
             </p>
-            <div className="flex space-x-4">
-              <motion.a
-                href="https://github.com"
-                whileHover={{ scale: 1.1, y: -2 }}
-                className="w-10 h-10 bg-slate-800 hover:bg-slate-700 rounded-lg flex items-center justify-center transition-colors"
-              >
-                <span className="text-slate-400 hover:text-white text-sm font-medium">
-                  GH
-                </span>
-              </motion.a>
-            </div>
           </div>
 
           {/* Footer Links */}
@@ -76,7 +65,7 @@ const Footer = () => {
         {/* Bottom Section */}
         <div className="mt-16 pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center">
           <div className="text-slate-400 text-sm mb-4 md:mb-0">
-            © 2024 Docker Judge. Open source project.
+            © 2024 Docker Judge. Developed by <a href="https://www.linkedin.com/in/saravana-krishnan-j-3a7080299/" target="_blank" rel="noopener noreferrer" className="text-indigo-400 hover:text-indigo-300 transition-colors">Saravana Krishnan J</a>
           </div>
           <div className="flex space-x-6 text-sm">
             <a href="https://github.com" className="text-slate-400 hover:text-white transition-colors">
