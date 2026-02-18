@@ -1,176 +1,221 @@
-# DockerJudge - LeetCode-Style Coding Platform
+# 🔥 DockerJudge - Advanced Online Coding Platform
 
-A complete LeetCode-style coding platform with secure Docker-based code execution, problem management, and automated judging system.
+A professional LeetCode-style coding platform with secure Docker-based execution, user profiles, solved problem tracking, and modern SaaS-level UI.
 
-## 🚀 Features
+## ✨ Latest Features (v2.0)
 
-### Core Platform Features
-- **Problem Management**: Browse coding problems with difficulty levels, descriptions, and examples
-- **Secure Code Execution**: Docker-based sandboxed execution for Java and Python
-- **Automated Judging**: Run hidden testcases and return verdicts (ACCEPTED, WRONG ANSWER, etc.)
-- **LeetCode-Style UI**: Professional interface with Monaco editor and animated components
-- **Real-time Feedback**: Instant submission results with execution time and memory usage
+### 🎯 User Profile System
+- **Animated Profile Page** (`/profile`) with user stats and progress tracking
+- **Solved Problems Tracking** - Automatic marking when submissions are ACCEPTED
+- **Progress Visualization** - Animated progress bars and counters
+- **Account Management** - Change password, delete account, logout functionality
 
-### Security Features
-- **Container Isolation**: Each code execution runs in isolated Docker containers
-- **No Network Access**: Containers have no internet connectivity
-- **Resource Limits**: CPU and memory limits enforced
-- **Automatic Cleanup**: Containers destroyed after execution
-- **Hidden Testcases**: Users never see actual test inputs/outputs
+### 🏆 Enhanced Problem Tracking
+- **Real-time Solved Badges** - Green checkmarks on solved problems
+- **Dynamic Counters** - "Solved: X / Total" with smooth animations
+- **Persistent Progress** - Solved problems saved in localStorage
+- **Visual Indicators** - Color-coded problem states
+
+### 🎨 Professional UI/UX
+- **SaaS-Level Design** - Linear/Vercel-inspired modern interface
+- **Framer Motion Animations** - Smooth page transitions and micro-interactions
+- **Consistent Backgrounds** - Animated gradient backgrounds across all pages
+- **Responsive Design** - Perfect on desktop, tablet, and mobile
+
+## 🚀 Core Platform Features
+
+### 💻 Coding Environment
+- **Monaco Code Editor** - Full-featured editor with syntax highlighting
+- **Multi-language Support** - Java and Python with more coming
+- **Secure Execution** - Docker-based sandboxed code execution
+- **Real-time Feedback** - Instant submission results with detailed metrics
+
+### 🔒 Security & Isolation
+- **Container Isolation** - Each execution in isolated Docker containers
+- **No Network Access** - Containers completely offline
+- **Resource Limits** - CPU, memory, and time constraints enforced
+- **Automatic Cleanup** - Containers destroyed after execution
+- **Hidden Testcases** - Users never see actual test inputs/outputs
+
+### 📊 Problem Management
+- **52+ Coding Problems** - Curated collection across all difficulty levels
+- **Difficulty Filtering** - Easy, Medium, Hard problem categories
+- **Search Functionality** - Find problems by title or keywords
+- **Progress Tracking** - Visual indicators for attempted/solved problems
 
 ## 🏗️ Architecture
 
 ```
-Frontend (React + Vite)
-├── Problems List Page
-├── Problem Detail Page  
-├── Monaco Code Editor
-└── Submission Results
+Frontend (React + Vite + Framer Motion)
+├── Landing Page (Animated Hero)
+├── Problems Page (52+ Problems)
+├── Problem Detail (Monaco Editor)
+├── Profile Page (User Stats)
+├── Auth Pages (Login/Signup)
+└── Solved Tracking System
 
 Backend (Node.js + Express)
 ├── Problem Management API
 ├── Submission Judging API
-└── Docker Execution Engine
+├── Docker Execution Engine
+└── User Authentication
 
-Docker Containers
-├── Java Runtime Environment
-└── Python Runtime Environment
+Storage
+├── localStorage (User Data)
+├── Problem Definitions (JSON)
+└── Hidden Testcases (Server-side)
 ```
 
 ## 📁 Project Structure
 
 ```
 DockerJudge/
-├── frontend/                 # React frontend
+├── frontend/                    # React frontend with animations
 │   ├── src/
 │   │   ├── pages/
-│   │   │   ├── ProblemsPage.jsx      # Problems list
-│   │   │   └── ProblemDetailPage.jsx # Problem solving interface
+│   │   │   ├── LandingPage.jsx         # Animated hero page
+│   │   │   ├── ProblemsPage.jsx        # 52+ problems with solved tracking
+│   │   │   ├── ProblemDetailPage.jsx   # Monaco editor + submission
+│   │   │   ├── ProfilePage.jsx         # User profile with stats
+│   │   │   ├── LoginPage.jsx           # Authentication
+│   │   │   └── SignupPage.jsx          # User registration
 │   │   ├── components/
-│   │   │   └── SubmissionResult.jsx  # Verdict display
+│   │   │   ├── CodeEditor.jsx          # Monaco editor wrapper
+│   │   │   ├── SubmissionResult.jsx    # Animated verdict display
+│   │   │   └── Navbar.jsx              # Navigation with user dropdown
+│   │   ├── contexts/
+│   │   │   ├── AuthContext.jsx         # User auth + solved tracking
+│   │   │   └── ThemeContext.jsx        # Dark/light theme
 │   │   └── utils/
-│   │       └── api.js               # API calls
-│   └── package.json
-├── backend/                  # Node.js backend
-│   ├── problems/            # Problem definitions
+│   │       └── api.js                  # API communication
+├── backend/                     # Node.js backend
+│   ├── problems/               # 52+ problem definitions
 │   │   ├── two-sum.json
-│   │   ├── reverse-string.json
-│   │   └── valid-parentheses.json
+│   │   ├── longest-substring.json
+│   │   └── ... (50+ more problems)
 │   ├── services/
-│   │   ├── judgeService.js  # Core judging logic
-│   │   └── problemService.js # Problem management
-│   ├── routes/
-│   │   ├── problems.js      # Problem APIs
-│   │   └── submit.js        # Submission API
+│   │   ├── judgeService.js     # Docker execution engine
+│   │   └── problemService.js   # Problem management
 │   └── server.js
-├── docker/                  # Docker configurations
-└── start.bat               # Windows startup script
+└── docker/                     # Container configurations
 ```
 
-## 🧪 How the Judge Works
+## 🎯 User Experience Flow
 
-### 1. Problem Structure
-Each problem contains:
-- **Public Data**: Title, description, examples, constraints
-- **Hidden Testcases**: Input/output pairs never shown to users
-- **Code Templates**: Starting code for different languages
+### 1. Landing Experience
+- **Animated Hero Section** with gradient backgrounds
+- **Feature Showcase** with interactive cards
+- **Call-to-Action** buttons leading to problems or judge
 
-### 2. Judging Process
-1. User submits code for a problem
-2. System fetches hidden testcases for that problem
-3. For each testcase:
-   - Code runs in isolated Docker container
-   - Input is provided via stdin
-   - Output captured from stdout
-   - Execution time and memory tracked
-4. Output comparison (exact match after trimming)
-5. Verdict determined based on results
+### 2. Problem Solving
+- **Browse 52+ Problems** with difficulty badges
+- **Real-time Search & Filter** functionality
+- **Monaco Code Editor** with syntax highlighting
+- **Instant Submission Results** with animated verdicts
 
-### 3. Verdict Rules
-| Condition | Verdict |
-|-----------|---------|
-| All testcases pass | ACCEPTED |
-| Any output mismatch | WRONG ANSWER |
-| Execution timeout | TIME LIMIT EXCEEDED |
-| Runtime crash/exception | RUNTIME ERROR |
-| Compilation failure | COMPILE ERROR |
+### 3. Progress Tracking
+- **Automatic Solved Marking** when submissions are ACCEPTED
+- **Profile Dashboard** with animated stats and progress bars
+- **Persistent Progress** across browser sessions
+- **Visual Achievement System** with badges and counters
 
-### 4. Security Measures
-- **No Testcase Exposure**: Users never see actual test inputs
-- **Container Isolation**: Each execution in fresh container
-- **Resource Limits**: CPU/memory/time constraints
-- **Network Disabled**: No internet access from containers
-- **Automatic Cleanup**: Containers removed after execution
+### 4. Account Management
+- **Secure Authentication** with localStorage persistence
+- **Profile Customization** with user stats
+- **Account Controls** (password change, account deletion)
+- **Session Management** with proper logout handling
 
 ## 🚀 Quick Start
 
 ### Prerequisites
 - Node.js 16+
 - Docker Desktop
-- Windows (for start.bat)
+- Modern web browser
 
 ### Installation & Startup
 ```bash
-# Clone and start the platform
-git clone <repository>
+# Clone the repository
+git clone https://github.com/SaravanaKrishnan16/Docker-Judge.git
 cd DockerJudge
+
+# Start the platform (Windows)
 start.bat
-```
 
-The script will:
-1. Install all dependencies
-2. Start backend server (port 3000)
-3. Start frontend dev server (port 5173)
-4. Open both in separate command windows
-
-### Manual Startup
-```bash
+# Or manually:
 # Backend
-cd backend
-npm install
-npm start
+cd backend && npm install && npm start
 
 # Frontend (new terminal)
-cd frontend
-npm install
-npm run dev
+cd frontend && npm install && npm run dev
 ```
 
-## 📝 Sample Problems
+### First Time Setup
+1. Visit `http://localhost:5173`
+2. Create account via "Sign Up"
+3. Start solving problems!
+4. Check your progress in Profile page
 
-### Two Sum
-- **Difficulty**: Easy
-- **Testcases**: 5 hidden testcases
-- **Languages**: Java, Python
-- **Time Limit**: 2 seconds
+## 🎨 UI/UX Features
 
-### Reverse String
-- **Difficulty**: Easy  
-- **Testcases**: 4 hidden testcases
-- **Languages**: Java, Python
-- **Time Limit**: 1 second
+### Modern Design System
+- **Glassmorphism Effects** - Backdrop blur and transparency
+- **Gradient Animations** - Moving background gradients
+- **Micro-interactions** - Hover effects and button animations
+- **Consistent Spacing** - Professional layout system
 
-### Valid Parentheses
-- **Difficulty**: Easy
-- **Testcases**: 6 hidden testcases
-- **Languages**: Java, Python
-- **Time Limit**: 1 second
+### Animation Library
+- **Page Transitions** - Smooth enter/exit animations
+- **Loading States** - Skeleton screens and spinners
+- **Success Feedback** - Celebration animations for solved problems
+- **Progress Animations** - Count-up effects and progress bars
+
+### Responsive Design
+- **Mobile-First** - Optimized for all screen sizes
+- **Touch-Friendly** - Large tap targets and gestures
+- **Adaptive Layout** - Flexible grid systems
+- **Cross-Browser** - Tested on Chrome, Firefox, Safari, Edge
+
+## 🏆 Problem Collection
+
+### Difficulty Distribution
+- **Easy Problems**: 20+ problems for beginners
+- **Medium Problems**: 25+ problems for intermediate
+- **Hard Problems**: 7+ problems for advanced
+
+### Popular Problems Included
+- Two Sum, Add Two Numbers, Longest Substring
+- Valid Parentheses, Merge Two Lists, Binary Search
+- Container With Most Water, 3Sum, Letter Combinations
+- And 40+ more carefully curated problems!
+
+### Problem Features
+- **Detailed Descriptions** with examples and constraints
+- **Hidden Testcases** for secure judging
+- **Multiple Languages** (Java, Python)
+- **Time/Memory Limits** for performance optimization
 
 ## 🔧 API Endpoints
 
-### Problems API
+### Authentication
 ```
-GET /api/problems           # Get all problems (no testcases)
-GET /api/problems/:id       # Get single problem (no testcases)
+POST /api/auth/login     # User login
+POST /api/auth/signup    # User registration
+POST /api/auth/logout    # User logout
 ```
 
-### Submission API
+### Problems
+```
+GET /api/problems        # Get all problems (no testcases)
+GET /api/problems/:id    # Get single problem details
+```
+
+### Submissions
 ```
 POST /api/submit
 {
   "problemId": "two-sum",
   "language": "java",
-  "code": "..."
+  "code": "public class Solution { ... }"
 }
 
 Response:
@@ -179,116 +224,103 @@ Response:
   "passed": 5,
   "total": 5,
   "time_ms": 120,
-  "memory_kb": 1024
+  "memory_kb": 1024,
+  "message": "All test cases passed!"
 }
 ```
 
-## 🎨 Frontend Features
+## 🔒 Security & Performance
 
-### LeetCode-Style Interface
-- **Split Layout**: Problem description | Code editor
-- **Monaco Editor**: Full-featured code editor with syntax highlighting
-- **Language Selection**: Java and Python support
-- **Animated UI**: Smooth transitions and loading states
-- **Responsive Design**: Works on desktop and mobile
+### Code Execution Security
+- **Docker Isolation** - Each submission in fresh container
+- **Resource Limits** - CPU/memory/time constraints
+- **No Network Access** - Containers completely offline
+- **Automatic Cleanup** - No persistent data between runs
 
-### Problem List
-- **Difficulty Badges**: Color-coded difficulty levels
-- **Search & Filter**: Find problems quickly
-- **Hover Animations**: Interactive problem cards
-- **Progress Tracking**: Visual indicators for solved problems
+### User Data Protection
+- **Client-side Storage** - No sensitive data on servers
+- **Secure Authentication** - Proper password handling
+- **Session Management** - Automatic logout on browser close
+- **Data Validation** - Input sanitization and validation
 
-### Submission Results
-- **Animated Verdicts**: Green/red/yellow verdict displays
-- **Execution Stats**: Time and memory usage
-- **Testcase Count**: Passed/total without revealing inputs
-- **Error Messages**: Helpful debugging information
-
-## 🐳 Docker Integration
-
-### Supported Languages
-- **Java**: OpenJDK runtime with compilation
-- **Python**: Python 3.x interpreter
-
-### Container Security
-- **Isolated Execution**: Each run in fresh container
-- **No Persistence**: Containers destroyed after execution
-- **Resource Limits**: CPU, memory, and time constraints
-- **No Network**: Containers cannot access internet
-
-### Execution Flow
-1. Code submitted via API
-2. Docker container created with language runtime
-3. Code executed with testcase input
-4. Output captured and container destroyed
-5. Results compared and verdict returned
-
-## 🔒 Security Considerations
-
-### Code Execution Safety
-- All code runs in isolated Docker containers
-- No access to host filesystem
-- No network connectivity
-- Automatic resource cleanup
-- Time and memory limits enforced
-
-### Testcase Protection
-- Testcases stored server-side only
-- Never transmitted to frontend
-- Hidden from all API responses
-- Only used internally for judging
+### Performance Optimization
+- **Lazy Loading** - Components loaded on demand
+- **Code Splitting** - Optimized bundle sizes
+- **Caching Strategy** - Efficient data fetching
+- **Animation Performance** - GPU-accelerated animations
 
 ## 🛠️ Development
 
 ### Adding New Problems
 1. Create JSON file in `backend/problems/`
-2. Include testcases with input/output pairs
+2. Include hidden testcases with input/output pairs
 3. Add code templates for supported languages
-4. Problem automatically available via API
+4. Problem automatically appears in frontend
 
-### Adding New Languages
-1. Create Docker image with language runtime
-2. Update `dockerExecutor.js` with language support
-3. Add language option to frontend selector
-4. Update problem templates
+### Customizing UI
+1. Modify theme colors in `ThemeContext.jsx`
+2. Update animations in component files
+3. Add new Framer Motion variants
+4. Test across different screen sizes
 
-## 📊 Performance
+### Extending Features
+1. Add new language support in backend
+2. Create new page components
+3. Extend AuthContext for new user features
+4. Update API endpoints as needed
 
-### Execution Limits
-- **Time Limit**: 1-5 seconds per testcase
-- **Memory Limit**: 128MB per container
-- **CPU Limit**: Single core usage
-- **Container Timeout**: 10 seconds maximum
+## 📊 Analytics & Metrics
 
-### Scalability
-- Stateless architecture
-- Horizontal scaling possible
-- Docker container pooling
-- Async execution handling
+### User Engagement
+- **Problem Solve Rate** - Track completion percentages
+- **Session Duration** - Monitor user engagement time
+- **Popular Problems** - Identify most attempted problems
+- **Success Patterns** - Analyze solving strategies
+
+### Performance Metrics
+- **Execution Times** - Monitor code performance
+- **Memory Usage** - Track resource consumption
+- **Error Rates** - Identify common issues
+- **Response Times** - API performance monitoring
 
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create feature branch
-3. Add tests for new functionality
-4. Ensure Docker security compliance
-5. Submit pull request
+2. Create feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open Pull Request
+
+### Development Guidelines
+- Follow React best practices
+- Use TypeScript for new components
+- Add proper error handling
+- Include responsive design
+- Test on multiple browsers
 
 ## 📄 License
 
 MIT License - see LICENSE file for details
 
-## 🆘 Troubleshooting
+## 🆘 Support & Troubleshooting
 
 ### Common Issues
-- **Docker not running**: Ensure Docker Desktop is started
-- **Port conflicts**: Check ports 3000 and 5173 are available
-- **Container failures**: Verify Docker has sufficient resources
-- **Build errors**: Run `npm install` in both frontend and backend
+- **Docker not running**: Start Docker Desktop
+- **Port conflicts**: Check ports 3000, 5173 are free
+- **Build errors**: Clear node_modules and reinstall
+- **Animation lag**: Check GPU acceleration in browser
 
-### Debug Mode
-Set `DEBUG=true` in backend environment for detailed logging.
+### Getting Help
+- Check GitHub Issues for known problems
+- Create new issue with detailed description
+- Include browser console errors
+- Provide steps to reproduce
 
 ---
 
-**Built with ❤️ for competitive programming and coding education**
+**🚀 Built with modern web technologies for the next generation of coding education**
+
+**Tech Stack**: React 18, Vite, Framer Motion, Tailwind CSS, Node.js, Express, Docker, Monaco Editor
+
+**Live Demo**: [Your deployment URL here]
+**Repository**: https://github.com/SaravanaKrishnan16/Docker-Judge.git
