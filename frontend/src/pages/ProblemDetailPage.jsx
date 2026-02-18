@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '../contexts/ThemeContext';
+import { useAuth } from '../contexts/AuthContext';
 import { getProblem } from '../api';
 import CodeEditor from '../components/CodeEditor';
 import LoadingSpinner from '../components/LoadingSpinner';
@@ -42,6 +43,7 @@ function ProblemDetailPage() {
   const [submitting, setSubmitting] = useState(false);
   const [submissionResult, setSubmissionResult] = useState(null);
   const { theme } = useTheme();
+  const { addSolvedProblem, isSolved } = useAuth();
 
   useEffect(() => {
     fetchProblem();
@@ -120,6 +122,11 @@ function ProblemDetailPage() {
       
       const result = await response.json();
       console.log('Submission result:', result);
+      
+      // Check if problem was solved
+      if (result.verdict === 'ACCEPTED') {
+        addSolvedProblem(problemId);
+      }
       
       setSubmissionResult(result);
     } catch (error) {
@@ -273,8 +280,17 @@ function ProblemDetailPage() {
               <div className={`flex items-center space-x-2 px-4 py-2 rounded-xl backdrop-blur-xl ${
                 theme === 'dark' ? 'bg-slate-800/50' : 'bg-white/50'
               }`}>
-                <SparklesIcon className={`w-5 h-5 ${theme === 'dark' ? 'text-purple-400' : 'text-purple-600'}`} />
-                <span className={`text-sm font-medium ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>Not Attempted</span>
+                {isSolved(problemId) ? (
+                  <>
+                    <CheckCircleIcon className="w-5 h-5 text-green-400" />
+                    <span className="text-sm font-medium text-green-400">Solved</span>
+                  </>
+                ) : (
+                  <>
+                    <SparklesIcon className={`w-5 h-5 ${theme === 'dark' ? 'text-purple-400' : 'text-purple-600'}`} />
+                    <span className={`text-sm font-medium ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>Not Attempted</span>
+                  </>
+                )}
               </div>
             </motion.div>
           </div>

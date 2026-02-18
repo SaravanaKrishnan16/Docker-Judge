@@ -18,6 +18,20 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
     return localStorage.getItem('isAuthenticated') === 'true';
   });
+  const [solvedProblems, setSolvedProblems] = useState(() => {
+    const savedUser = localStorage.getItem('currentUser');
+    return savedUser ? JSON.parse(savedUser).solvedProblems || [] : [];
+  });
+
+  const updateUserData = (userData) => {
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    const userIndex = users.findIndex(u => u.email === userData.email);
+    if (userIndex !== -1) {
+      users[userIndex] = userData;
+      localStorage.setItem('users', JSON.stringify(users));
+    }
+    localStorage.setItem('currentUser', JSON.stringify(userData));
+  };
 
   const signup = (userData) => {
     const { name, email, password, confirmPassword } = userData;
@@ -26,16 +40,20 @@ export const AuthProvider = ({ children }) => {
       throw new Error('Passwords do not match');
     }
 
-    // Get existing users from localStorage
     const existingUsers = JSON.parse(localStorage.getItem('users') || '[]');
     
-    // Check if email already exists
     if (existingUsers.find(user => user.email === email)) {
       throw new Error('Email already exists');
     }
 
-    // Add new user
-    const newUser = { name, email, password };
+    const newUser = { 
+      name, 
+      email, 
+      password, 
+      solvedProblems: [],
+      memberSince: new Date().toISOString(),
+      totalSubmissions: 0
+    };
     existingUsers.push(newUser);
     localStorage.setItem('users', JSON.stringify(existingUsers));
     
@@ -44,22 +62,69 @@ export const AuthProvider = ({ children }) => {
 
   const login = (email, password) => {
     const existingUsers = JSON.parse(localStorage.getItem('users') || '[]');
-    const user = existingUsers.find(u => u.email === email && u.password === password);
+    const foundUser = existingUsers.find(u => u.email === email && u.password === password);
     
-    if (!user) {
+    if (!foundUser) {
       throw new Error('Invalid email or password');
     }
 
-    const userData = { name: user.name, email: user.email };
+    if (!foundUser.solvedProblems) foundUser.solvedProblems = [];
+    if (!foundUser.memberSince) foundUser.memberSince = new Date().toISOString();
+    if (!foundUser.totalSubmissions) foundUser.totalSubmissions = 0;
+
+    const userData = { 
+      name: foundUser.name, 
+      email: foundUser.email,
+      solvedProblems: foundUser.solvedProblems,
+      memberSince: foundUser.memberSince,
+      totalSubmissions: foundUser.totalSubmissions
+    };
+    
     setUser(userData);
+    setSolvedProblems(foundUser.solvedProblems);
     setIsAuthenticated(true);
     localStorage.setItem('currentUser', JSON.stringify(userData));
     localStorage.setItem('isAuthenticated', 'true');
+    updateUserData(foundUser);
     return true;
+  };
+
+  const addSolvedProblem = (problemId) => {
+    if (!user || solvedProblems.includes(problemId)) return;
+    
+    const newSolved = [...solvedProblems, problemId];
+    const updatedUser = { 
+      ...user, 
+      solvedProblems: newSolved,
+      totalSubmissions: (user.totalSubmissions || 0) + 1
+    };
+    
+    setSolvedProblems(newSolved);
+    setUser(updatedUser);
+    updateUserData(updatedUser);
+  };
+
+  const isSolved = (problemId) => {
+    return solvedProblems.includes(problemId);
+  };
+
+  const deleteAccount = () => {
+    if (!user) return;
+    
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    const filteredUsers = users.filter(u => u.email !== user.email);
+    localStorage.setItem('users', JSON.stringify(filteredUsers));
+    
+    setUser(null);
+    setSolvedProblems([]);
+    setIsAuthenticated(false);
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('isAuthenticated');
   };
 
   const logout = () => {
     setUser(null);
+    setSolvedProblems([]);
     setIsAuthenticated(false);
     localStorage.removeItem('currentUser');
     localStorage.removeItem('isAuthenticated');
@@ -70,7 +135,12 @@ export const AuthProvider = ({ children }) => {
     isAuthenticated,
     login,
     logout,
-    signup
+    signup,
+    deleteAccount,
+    solvedProblems,
+    solvedCount: solvedProblems.length,
+    addSolvedProblem,
+    isSolved
   };
 
   return (

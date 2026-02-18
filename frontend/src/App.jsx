@@ -12,6 +12,7 @@ import SignupPage from './pages/SignupPage';
 import JudgePage from './pages/JudgePage';
 import ProblemsPage from './pages/ProblemsPage';
 import ProblemDetailPage from './pages/ProblemDetailPage';
+import ProfilePage from './pages/ProfilePage';
 import './index.css';
 
 function AppContent() {
@@ -22,6 +23,7 @@ function AppContent() {
   const isAuthPage = ['/login', '/signup'].includes(location.pathname);
   const isJudgePage = location.pathname === '/judge';
   const isProblemPage = location.pathname.startsWith('/problem');
+  const isProfilePage = location.pathname === '/profile';
   
   useEffect(() => {
     if (!isAuthenticated && !isAuthPage) {
@@ -35,7 +37,7 @@ function AppContent() {
         ? 'bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950' 
         : 'bg-gradient-to-br from-gray-100 via-white to-gray-100'
     }`}>
-      {!isJudgePage && !isProblemPage && !isAuthPage && <Navbar />}
+      {!isJudgePage && !isProblemPage && !isAuthPage && !isProfilePage && <Navbar />}
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
@@ -73,6 +75,14 @@ function AppContent() {
           element={
             <ProtectedRoute>
               <ProblemDetailPage />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/profile" 
+          element={
+            <ProtectedRoute>
+              <ProfilePage />
             </ProtectedRoute>
           } 
         />

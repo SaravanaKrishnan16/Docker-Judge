@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../contexts/ThemeContext';
+import { useAuth } from '../contexts/AuthContext';
 import { getProblems } from '../api';
 import LoadingSpinner from '../components/LoadingSpinner';
 import PageNavigation from '../components/PageNavigation';
@@ -34,12 +35,27 @@ function ProblemsPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [difficultyFilter, setDifficultyFilter] = useState('All');
   const [sortBy, setSortBy] = useState('title');
+  const [animatedCount, setAnimatedCount] = useState(0);
   const { theme } = useTheme();
+  const { isSolved, solvedCount } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
     fetchProblems();
   }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setAnimatedCount(prev => {
+        if (prev < solvedCount) {
+          return prev + 1;
+        }
+        clearInterval(timer);
+        return prev;
+      });
+    }, 50);
+    return () => clearInterval(timer);
+  }, [solvedCount]);
 
   const fetchProblems = async () => {
     try {
@@ -191,6 +207,19 @@ function ProblemsPage() {
             Master algorithms, data structures, and problem-solving skills with our curated collection of coding challenges
           </motion.p>
           
+          {/* Solved Counter */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+            className="inline-flex items-center gap-3 bg-gradient-to-r from-green-500/20 to-emerald-500/20 backdrop-blur-sm border border-green-500/30 rounded-full px-8 py-4 mb-8"
+          >
+            <CheckCircleIcon className="w-6 h-6 text-green-400" />
+            <span className="text-white font-semibold text-lg">
+              Solved: <span className="text-green-400">{animatedCount}</span> / {problems.length}
+            </span>
+          </motion.div>
+
           {/* Stats */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -322,18 +351,35 @@ function ProblemsPage() {
                 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => navigate(`/problem/${problem.id}`)}
-                className={`group cursor-pointer rounded-2xl p-6 backdrop-blur-xl border transition-all duration-300 hover:shadow-2xl ${
-                  theme === 'dark'
-                    ? 'bg-slate-800/50 border-slate-700/50 hover:bg-slate-800/80 hover:border-slate-600'
-                    : 'bg-white/70 border-gray-200/50 hover:bg-white/90 hover:border-gray-300'
+                className={`group cursor-pointer rounded-2xl p-6 backdrop-blur-xl border transition-all duration-300 hover:shadow-2xl relative ${
+                  isSolved(problem.id) 
+                    ? theme === 'dark'
+                      ? 'bg-green-900/20 border-green-500/50 hover:bg-green-900/30 hover:border-green-400'
+                      : 'bg-green-50/70 border-green-200/50 hover:bg-green-50/90 hover:border-green-300'
+                    : theme === 'dark'
+                      ? 'bg-slate-800/50 border-slate-700/50 hover:bg-slate-800/80 hover:border-slate-600'
+                      : 'bg-white/70 border-gray-200/50 hover:bg-white/90 hover:border-gray-300'
                 }`}
               >
+                {/* Solved Badge */}
+                {isSolved(problem.id) && (
+                  <motion.div
+                    initial={{ scale: 0, rotate: -180 }}
+                    animate={{ scale: 1, rotate: 0 }}
+                    className="absolute -top-2 -right-2 bg-green-500 rounded-full p-2 shadow-lg z-10"
+                  >
+                    <CheckCircleIcon className="w-4 h-4 text-white" />
+                  </motion.div>
+                )}
+
                 {/* Problem Header */}
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex-1">
                     <motion.h3
                       className={`text-lg font-semibold mb-2 group-hover:text-blue-500 transition-colors ${
-                        theme === 'dark' ? 'text-white' : 'text-gray-900'
+                        isSolved(problem.id)
+                          ? 'text-green-400'
+                          : theme === 'dark' ? 'text-white' : 'text-gray-900'
                       }`}
                     >
                       {problem.title}
@@ -382,12 +428,21 @@ function ProblemsPage() {
                   </div>
                   
                   <div className="flex items-center space-x-1">
-                    <div className={`w-2 h-2 rounded-full ${
-                      theme === 'dark' ? 'bg-gray-600' : 'bg-gray-400'
-                    }`} />
-                    <span className={`text-xs ${
-                      theme === 'dark' ? 'text-gray-400' : 'text-gray-500'
-                    }`}>Not Attempted</span>
+                    {isSolved(problem.id) ? (
+                      <>
+                        <div className="w-2 h-2 rounded-full bg-green-500" />
+                        <span className="text-xs text-green-400">Solved</span>
+                      </>
+                    ) : (
+                      <>
+                        <div className={`w-2 h-2 rounded-full ${
+                          theme === 'dark' ? 'bg-gray-600' : 'bg-gray-400'
+                        }`} />
+                        <span className={`text-xs ${
+                          theme === 'dark' ? 'text-gray-400' : 'text-gray-500'
+                        }`}>Not Attempted</span>
+                      </>
+                    )}
                   </div>
                 </div>
                 

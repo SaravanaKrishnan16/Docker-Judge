@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useTheme } from '../contexts/ThemeContext';
-import AnimatedBackground from '../components/AnimatedBackground';
 import { EyeIcon, EyeSlashIcon, EnvelopeIcon, LockClosedIcon } from '@heroicons/react/24/outline';
 
 const LoginPage = () => {
@@ -37,7 +36,57 @@ const LoginPage = () => {
         ? 'bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950' 
         : 'bg-gradient-to-br from-gray-50 via-white to-gray-100'
     }`}>
-      <AnimatedBackground />
+      {/* Animated Background Elements */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          animate={{
+            rotate: [0, 360],
+            scale: [1, 1.2, 1],
+            x: [0, 100, 0],
+            y: [0, -50, 0]
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+          className={`absolute -top-40 -right-40 w-96 h-96 rounded-full opacity-10 ${
+            theme === 'dark' ? 'bg-gradient-to-r from-blue-500 to-purple-600' : 'bg-gradient-to-r from-blue-300 to-purple-400'
+          }`}
+        />
+        <motion.div
+          animate={{
+            rotate: [360, 0],
+            scale: [1, 0.8, 1.1, 1],
+            x: [0, -80, 0],
+            y: [0, 60, 0]
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+          className={`absolute -bottom-40 -left-40 w-80 h-80 rounded-full opacity-8 ${
+            theme === 'dark' ? 'bg-gradient-to-r from-green-500 to-cyan-500' : 'bg-gradient-to-r from-green-300 to-cyan-400'
+          }`}
+        />
+        <motion.div
+          animate={{
+            rotate: [0, -360],
+            scale: [1, 1.3, 0.9, 1],
+            x: [0, 120, -60, 0],
+            y: [0, -80, 40, 0]
+          }}
+          transition={{
+            duration: 30,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+          className={`absolute top-1/2 right-1/4 w-64 h-64 rounded-full opacity-6 ${
+            theme === 'dark' ? 'bg-gradient-to-r from-purple-500 to-pink-500' : 'bg-gradient-to-r from-purple-300 to-pink-400'
+          }`}
+        />
+      </div>
       
       <div className="relative z-10 min-h-screen flex items-center justify-center px-4">
         <motion.div
