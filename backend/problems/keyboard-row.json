@@ -1,0 +1,35 @@
+{
+  "id": "keyboard-row",
+  "title": "Keyboard Row",
+  "difficulty": "Easy",
+  "description": "Given an array of strings words, return the words that can be typed using letters of the alphabet on only one row of an American keyboard.",
+  "examples": [
+    {
+      "input": "[\"Hello\",\"Alaska\",\"Dad\",\"Peace\"]",
+      "output": "[\"Alaska\",\"Dad\"]"
+    }
+  ],
+  "constraints": [
+    "1 <= words.length <= 20",
+    "1 <= words[i].length <= 100",
+    "words[i] consists of English letters (both lowercase and uppercase)"
+  ],
+  "testcases": [
+    {
+      "input": "[\"Hello\",\"Alaska\",\"Dad\",\"Peace\"]",
+      "output": "[\"Alaska\",\"Dad\"]"
+    },
+    {
+      "input": "[\"omk\"]",
+      "output": "[]"
+    },
+    {
+      "input": "[\"adsdf\",\"sfd\"]",
+      "output": "[\"adsdf\",\"sfd\"]"
+    }
+  ],
+  "templates": {
+    "java": "import java.util.*;\n\nclass Solution {\n    public String[] findWords(String[] words) {\n        // Your code here\n        return new String[0];\n    }\n}\n\n// Driver code - DO NOT MODIFY\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String input = sc.nextLine().trim();\n        \n        input = input.substring(1, input.length() - 1);\n        String[] words;\n        if (input.isEmpty()) {\n            words = new String[0];\n        } else {\n            String[] parts = input.split(\",\");\n            words = new String[parts.length];\n            for (int i = 0; i < parts.length; i++) {\n                words[i] = parts[i].trim().replaceAll(\"^\\\"|\\\"$\", \"\");\n            }\n        }\n        \n        Solution sol = new Solution();\n        String[] result = sol.findWords(words);\n        System.out.println(Arrays.toString(result));\n    }\n}",
+    "python": "class Solution:\n    def findWords(self, words):\n        # Your code here\n        return []\n\n# Driver code - DO NOT MODIFY\nif __name__ == \"__main__\":\n    words_input = input().strip()\n    words = [w.strip().strip('\"') for w in words_input[1:-1].split(',')] if words_input != \"[]\" else []\n    sol = Solution()\n    result = sol.findWords(words)\n    print(result)"
+  }
+}

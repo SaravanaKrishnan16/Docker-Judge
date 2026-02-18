@@ -1,0 +1,42 @@
+{
+  "id": "contains-duplicate",
+  "title": "Contains Duplicate",
+  "difficulty": "Easy",
+  "description": "Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.",
+  "examples": [
+    {
+      "input": "nums = [1,2,3,1]",
+      "output": "true"
+    },
+    {
+      "input": "nums = [1,2,3,4]",
+      "output": "false"
+    },
+    {
+      "input": "nums = [1,1,1,3,3,4,3,2,4,2]",
+      "output": "true"
+    }
+  ],
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "-10^9 <= nums[i] <= 10^9"
+  ],
+  "testcases": [
+    {
+      "input": "[1,2,3,1]",
+      "output": "true"
+    },
+    {
+      "input": "[1,2,3,4]",
+      "output": "false"
+    },
+    {
+      "input": "[1,1,1,3,3,4,3,2,4,2]",
+      "output": "true"
+    }
+  ],
+  "templates": {
+    "java": "import java.util.*;\n\nclass Solution {\n    public boolean containsDuplicate(int[] nums) {\n        // Your code here\n        return false;\n    }\n}\n\n// Driver code - DO NOT MODIFY\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        \n        String arrayInput = sc.nextLine().trim();\n        arrayInput = arrayInput.substring(1, arrayInput.length() - 1);\n        int[] nums;\n        if (arrayInput.isEmpty()) {\n            nums = new int[0];\n        } else {\n            String[] parts = arrayInput.split(\",\");\n            nums = new int[parts.length];\n            for (int i = 0; i < parts.length; i++) {\n                nums[i] = Integer.parseInt(parts[i].trim());\n            }\n        }\n        \n        Solution sol = new Solution();\n        boolean result = sol.containsDuplicate(nums);\n        System.out.println(result);\n    }\n}",
+    "python": "class Solution:\n    def containsDuplicate(self, nums):\n        # Your code here\n        return False\n\n# Driver code - DO NOT MODIFY\nif __name__ == \"__main__\":\n    nums_input = input().strip()\n    nums = list(map(int, nums_input[1:-1].split(','))) if nums_input != \"[]\" else []\n    sol = Solution()\n    result = sol.containsDuplicate(nums)\n    print(result)"
+  }
+}

@@ -1,0 +1,60 @@
+services:
+  dockerjudge-frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - VITE_API_URL=http://localhost:3000
+    depends_on:
+      - dockerjudge-api
+    networks:
+      - dockerjudge-net
+
+  dockerjudge-api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - HOST=0.0.0.0
+      - HOST_TMP_DIR=/c/temp/dockerjudge
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /c/temp/dockerjudge:/tmp/dockerjudge
+    depends_on:
+      - python-builder
+      - java-builder
+    restart: unless-stopped
+    networks:
+      - dockerjudge-net
+
+  # Build images for each language
+  python-builder:
+    build:
+      context: ./docker/python
+      dockerfile: Dockerfile
+    image: dockerjudge-python:latest
+    command: echo "Python image built"
+    networks:
+      - dockerjudge-net
+
+  java-builder:
+    build:
+      context: ./docker/java
+      dockerfile: Dockerfile
+    image: dockerjudge-java:latest
+    command: echo "Java image built"
+    networks:
+      - dockerjudge-net
+
+networks:
+  dockerjudge-net:
+    driver: bridge

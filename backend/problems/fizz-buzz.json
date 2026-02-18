@@ -1,0 +1,37 @@
+{
+  "id": "fizz-buzz",
+  "title": "Fizz Buzz",
+  "difficulty": "Easy",
+  "description": "Given an integer n, return a string array answer (1-indexed) where: answer[i] is \"FizzBuzz\" if i is divisible by both 3 and 5, \"Fizz\" if divisible by 3, \"Buzz\" if divisible by 5, and i (as a string) otherwise.",
+  "examples": [
+    {
+      "input": "3",
+      "output": "[\"1\",\"2\",\"Fizz\"]"
+    },
+    {
+      "input": "5",
+      "output": "[\"1\",\"2\",\"Fizz\",\"4\",\"Buzz\"]"
+    }
+  ],
+  "constraints": [
+    "1 <= n <= 10^4"
+  ],
+  "testcases": [
+    {
+      "input": "3",
+      "output": "[\"1\",\"2\",\"Fizz\"]"
+    },
+    {
+      "input": "5",
+      "output": "[\"1\",\"2\",\"Fizz\",\"4\",\"Buzz\"]"
+    },
+    {
+      "input": "15",
+      "output": "[\"1\",\"2\",\"Fizz\",\"4\",\"Buzz\",\"Fizz\",\"7\",\"8\",\"Fizz\",\"Buzz\",\"11\",\"Fizz\",\"13\",\"14\",\"FizzBuzz\"]"
+    }
+  ],
+  "templates": {
+    "java": "import java.util.*;\n\nclass Solution {\n    public List<String> fizzBuzz(int n) {\n        // Your code here\n        return new ArrayList<>();\n    }\n}\n\n// Driver code - DO NOT MODIFY\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        \n        Solution sol = new Solution();\n        List<String> result = sol.fizzBuzz(n);\n        System.out.println(result);\n    }\n}",
+    "python": "class Solution:\n    def fizzBuzz(self, n):\n        # Your code here\n        return []\n\n# Driver code - DO NOT MODIFY\nif __name__ == \"__main__\":\n    n = int(input().strip())\n    sol = Solution()\n    result = sol.fizzBuzz(n)\n    print(result)"
+  }
+}

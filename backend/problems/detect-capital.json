@@ -1,0 +1,46 @@
+{
+  "id": "detect-capital",
+  "title": "Detect Capital",
+  "difficulty": "Easy",
+  "description": "We define the usage of capitals in a word to be right when one of the following cases holds: (1) All letters are capitals, (2) All letters are not capitals, (3) Only the first letter is capital. Given a string word, return true if the usage of capitals is right.",
+  "examples": [
+    {
+      "input": "\"USA\"",
+      "output": "true"
+    },
+    {
+      "input": "\"FlaG\"",
+      "output": "false"
+    }
+  ],
+  "constraints": [
+    "1 <= word.length <= 100",
+    "word consists of lowercase and uppercase English letters"
+  ],
+  "testcases": [
+    {
+      "input": "USA",
+      "output": "true"
+    },
+    {
+      "input": "FlaG",
+      "output": "false"
+    },
+    {
+      "input": "leetcode",
+      "output": "true"
+    },
+    {
+      "input": "Google",
+      "output": "true"
+    },
+    {
+      "input": "g",
+      "output": "true"
+    }
+  ],
+  "templates": {
+    "java": "import java.util.*;\n\nclass Solution {\n    public boolean detectCapitalUse(String word) {\n        // Your code here\n        return false;\n    }\n}\n\n// Driver code - DO NOT MODIFY\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String word = sc.nextLine().trim();\n        \n        Solution sol = new Solution();\n        boolean result = sol.detectCapitalUse(word);\n        System.out.println(result);\n    }\n}",
+    "python": "class Solution:\n    def detectCapitalUse(self, word):\n        # Your code here\n        return False\n\n# Driver code - DO NOT MODIFY\nif __name__ == \"__main__\":\n    word = input().strip()\n    sol = Solution()\n    result = sol.detectCapitalUse(word)\n    print(result)"
+  }
+}

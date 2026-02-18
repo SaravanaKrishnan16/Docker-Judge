@@ -1,0 +1,32 @@
+{
+  "id": "relative-ranks",
+  "title": "Relative Ranks",
+  "difficulty": "Easy",
+  "description": "You are given an integer array score where score[i] is the score of the ith athlete. Return an array of strings where each element represents the athlete's rank.",
+  "examples": [
+    {
+      "input": "[5,4,3,2,1]",
+      "output": "[\"Gold Medal\",\"Silver Medal\",\"Bronze Medal\",\"4\",\"5\"]"
+    }
+  ],
+  "constraints": [
+    "n == score.length",
+    "1 <= n <= 10^4",
+    "0 <= score[i] <= 10^6",
+    "All values in score are unique"
+  ],
+  "testcases": [
+    {
+      "input": "[5,4,3,2,1]",
+      "output": "[\"Gold Medal\",\"Silver Medal\",\"Bronze Medal\",\"4\",\"5\"]"
+    },
+    {
+      "input": "[10,3,8,9,4]",
+      "output": "[\"Gold Medal\",\"5\",\"Bronze Medal\",\"Silver Medal\",\"4\"]"
+    }
+  ],
+  "templates": {
+    "java": "import java.util.*;\n\nclass Solution {\n    public String[] findRelativeRanks(int[] score) {\n        // Your code here\n        return new String[score.length];\n    }\n}\n\n// Driver code - DO NOT MODIFY\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String input = sc.nextLine().trim();\n        \n        input = input.substring(1, input.length() - 1);\n        int[] score;\n        if (input.isEmpty()) {\n            score = new int[0];\n        } else {\n            String[] parts = input.split(\",\");\n            score = new int[parts.length];\n            for (int i = 0; i < parts.length; i++) {\n                score[i] = Integer.parseInt(parts[i].trim());\n            }\n        }\n        \n        Solution sol = new Solution();\n        String[] result = sol.findRelativeRanks(score);\n        System.out.println(Arrays.toString(result));\n    }\n}",
+    "python": "class Solution:\n    def findRelativeRanks(self, score):\n        # Your code here\n        return [\"\"] * len(score)\n\n# Driver code - DO NOT MODIFY\nif __name__ == \"__main__\":\n    score_input = input().strip()\n    score = list(map(int, score_input[1:-1].split(','))) if score_input != \"[]\" else []\n    sol = Solution()\n    result = sol.findRelativeRanks(score)\n    print(result)"
+  }
+}

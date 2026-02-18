@@ -1,0 +1,47 @@
+{
+  "id": "remove-duplicates-sorted-array",
+  "title": "Remove Duplicates from Sorted Array",
+  "difficulty": "Easy",
+  "description": "Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place such that each unique element appears only once and return the number of unique elements.",
+  "examples": [
+    {
+      "input": "[1,1,2]",
+      "output": "2"
+    },
+    {
+      "input": "[0,0,1,1,1,2,2,3,3,4]",
+      "output": "5"
+    }
+  ],
+  "constraints": [
+    "1 <= nums.length <= 3 * 10^4",
+    "-100 <= nums[i] <= 100",
+    "nums is sorted in non-decreasing order"
+  ],
+  "testcases": [
+    {
+      "input": "[1,1,2]",
+      "output": "2"
+    },
+    {
+      "input": "[0,0,1,1,1,2,2,3,3,4]",
+      "output": "5"
+    },
+    {
+      "input": "[1,2,3]",
+      "output": "3"
+    },
+    {
+      "input": "[1]",
+      "output": "1"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "output": "1"
+    }
+  ],
+  "templates": {
+    "java": "import java.util.*;\n\nclass Solution {\n    public int removeDuplicates(int[] nums) {\n        // Your code here\n        return 0;\n    }\n}\n\n// Driver code - DO NOT MODIFY\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String input = sc.nextLine().trim();\n        \n        input = input.substring(1, input.length() - 1);\n        int[] nums;\n        if (input.isEmpty()) {\n            nums = new int[0];\n        } else {\n            String[] parts = input.split(\",\");\n            nums = new int[parts.length];\n            for (int i = 0; i < parts.length; i++) {\n                nums[i] = Integer.parseInt(parts[i].trim());\n            }\n        }\n        \n        Solution sol = new Solution();\n        int k = sol.removeDuplicates(nums);\n        System.out.println(k);\n        System.out.println(Arrays.toString(Arrays.copyOf(nums, k)));\n    }\n}",
+    "python": "class Solution:\n    def removeDuplicates(self, nums):\n        # Your code here\n        return 0\n\n# Driver code - DO NOT MODIFY\nif __name__ == \"__main__\":\n    nums_input = input().strip()\n    nums = list(map(int, nums_input[1:-1].split(','))) if nums_input != \"[]\" else []\n    sol = Solution()\n    k = sol.removeDuplicates(nums)\n    print(k)\n    print(nums[:k])"
+  }
+}

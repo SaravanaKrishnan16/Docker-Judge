@@ -1,0 +1,46 @@
+{
+  "id": "binary-tree-postorder",
+  "title": "Binary Tree Postorder Traversal",
+  "difficulty": "Easy",
+  "description": "Given the root of a binary tree, return the postorder traversal of its nodes' values.\n\nPostorder traversal follows the order: Left → Right → Root.",
+  "constraints": [
+    "The number of nodes in the tree is in the range [0, 100].",
+    "-100 <= Node.val <= 100"
+  ],
+  "examples": [
+    {
+      "input": "root = [1,null,2,3]",
+      "output": "[3,2,1]"
+    },
+    {
+      "input": "root = []",
+      "output": "[]"
+    },
+    {
+      "input": "root = [1]",
+      "output": "[1]"
+    }
+  ],
+  "testcases": [
+    {
+      "input": "[1,null,2,3]",
+      "output": "[3,2,1]"
+    },
+    {
+      "input": "[]",
+      "output": "[]"
+    },
+    {
+      "input": "[1]",
+      "output": "[1]"
+    },
+    {
+      "input": "[1,2,3,4,5]",
+      "output": "[4,5,2,3,1]"
+    }
+  ],
+  "templates": {
+    "java": "import java.util.*;\n\nclass TreeNode {\n    int val;\n    TreeNode left;\n    TreeNode right;\n    TreeNode(int val) { this.val = val; }\n}\n\nclass Solution {\n    public List<Integer> postorderTraversal(TreeNode root) {\n        // Your code here\n        return new ArrayList<>();\n    }\n}\n\n// Driver code - DO NOT MODIFY\npublic class Main {\n    private static TreeNode buildTree(String data) {\n        if (data.equals(\"[]\")) return null;\n        data = data.substring(1, data.length() - 1);\n        String[] values = data.split(\",\");\n        \n        TreeNode root = new TreeNode(Integer.parseInt(values[0].trim()));\n        Queue<TreeNode> queue = new LinkedList<>();\n        queue.offer(root);\n        int i = 1;\n        \n        while (!queue.isEmpty() && i < values.length) {\n            TreeNode current = queue.poll();\n            \n            if (!values[i].trim().equals(\"null\")) {\n                current.left = new TreeNode(Integer.parseInt(values[i].trim()));\n                queue.offer(current.left);\n            }\n            i++;\n            \n            if (i < values.length && !values[i].trim().equals(\"null\")) {\n                current.right = new TreeNode(Integer.parseInt(values[i].trim()));\n                queue.offer(current.right);\n            }\n            i++;\n        }\n        return root;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String input = sc.nextLine().trim();\n        \n        TreeNode root = buildTree(input);\n        Solution sol = new Solution();\n        List<Integer> result = sol.postorderTraversal(root);\n        \n        System.out.println(result);\n    }\n}",
+    "python": "from collections import deque\n\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\nclass Solution:\n    def postorderTraversal(self, root):\n        # Your code here\n        return []\n\n# Driver code - DO NOT MODIFY\ndef build_tree(data):\n    if data == \"[]\":\n        return None\n    data = data[1:-1].split(',')\n    root = TreeNode(int(data[0].strip()))\n    queue = deque([root])\n    i = 1\n\n    while queue and i < len(data):\n        node = queue.popleft()\n        if data[i].strip() != \"null\":\n            node.left = TreeNode(int(data[i].strip()))\n            queue.append(node.left)\n        i += 1\n        if i < len(data) and data[i].strip() != \"null\":\n            node.right = TreeNode(int(data[i].strip()))\n            queue.append(node.right)\n        i += 1\n    return root\n\nif __name__ == \"__main__\":\n    input_data = input().strip()\n    root = build_tree(input_data)\n    sol = Solution()\n    result = sol.postorderTraversal(root)\n    print(result)"
+  }
+}

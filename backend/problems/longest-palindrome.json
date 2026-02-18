@@ -1,0 +1,38 @@
+{
+  "id": "longest-palindrome",
+  "title": "Longest Palindrome",
+  "difficulty": "Easy",
+  "description": "Given a string s consisting of lowercase or uppercase letters, return the length of the longest palindrome that can be built with those letters.",
+  "examples": [
+    {
+      "input": "\"abccccdd\"",
+      "output": "7"
+    },
+    {
+      "input": "\"a\"",
+      "output": "1"
+    }
+  ],
+  "constraints": [
+    "1 <= s.length <= 2000",
+    "s consists of lowercase and/or uppercase English letters only"
+  ],
+  "testcases": [
+    {
+      "input": "abccccdd",
+      "output": "7"
+    },
+    {
+      "input": "a",
+      "output": "1"
+    },
+    {
+      "input": "bb",
+      "output": "2"
+    }
+  ],
+  "templates": {
+    "java": "import java.util.*;\n\nclass Solution {\n    public int longestPalindrome(String s) {\n        // Your code here\n        return 0;\n    }\n}\n\n// Driver code - DO NOT MODIFY\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = sc.nextLine().trim();\n        \n        Solution sol = new Solution();\n        System.out.println(sol.longestPalindrome(s));\n    }\n}",
+    "python": "class Solution:\n    def longestPalindrome(self, s):\n        # Your code here\n        return 0\n\n# Driver code - DO NOT MODIFY\nif __name__ == \"__main__\":\n    s = input().strip()\n    sol = Solution()\n    print(sol.longestPalindrome(s))"
+  }
+}

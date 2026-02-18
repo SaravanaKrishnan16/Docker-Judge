@@ -1,0 +1,30 @@
+{
+  "id": "find-mode-bst",
+  "title": "Find Mode in Binary Search Tree",
+  "difficulty": "Easy",
+  "description": "Given the root of a binary search tree (BST) with duplicates, return all the mode(s) (i.e., the most frequently occurred element) in the tree.",
+  "examples": [
+    {
+      "input": "[1,null,2,2]",
+      "output": "[2]"
+    }
+  ],
+  "constraints": [
+    "The number of nodes in the tree is in the range [1, 10^4].",
+    "-10^5 <= Node.val <= 10^5"
+  ],
+  "testcases": [
+    {
+      "input": "[1,null,2,2]",
+      "output": "[2]"
+    },
+    {
+      "input": "[0]",
+      "output": "[0]"
+    }
+  ],
+  "templates": {
+    "java": "import java.util.*;\n\nclass TreeNode {\n    int val;\n    TreeNode left;\n    TreeNode right;\n    TreeNode(int val) {\n        this.val = val;\n        this.left = null;\n        this.right = null;\n    }\n}\n\nclass Solution {\n    public int[] findMode(TreeNode root) {\n        // Your code here\n        return new int[0];\n    }\n}\n\n// Driver code - DO NOT MODIFY\npublic class Main {\n    public static TreeNode buildTree(String input) {\n        if (input.equals(\"[]\")) return null;\n        \n        input = input.substring(1, input.length() - 1);\n        String[] values = input.split(\",\");\n        TreeNode root = new TreeNode(Integer.parseInt(values[0].trim()));\n        Queue<TreeNode> queue = new LinkedList<>();\n        queue.add(root);\n        \n        int i = 1;\n        while (!queue.isEmpty() && i < values.length) {\n            TreeNode current = queue.poll();\n            \n            if (!values[i].trim().equals(\"null\")) {\n                current.left = new TreeNode(Integer.parseInt(values[i].trim()));\n                queue.add(current.left);\n            }\n            i++;\n            \n            if (i < values.length && !values[i].trim().equals(\"null\")) {\n                current.right = new TreeNode(Integer.parseInt(values[i].trim()));\n                queue.add(current.right);\n            }\n            i++;\n        }\n        return root;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String input = sc.nextLine().trim();\n        \n        TreeNode root = buildTree(input);\n        Solution sol = new Solution();\n        int[] result = sol.findMode(root);\n        \n        System.out.println(Arrays.toString(result));\n    }\n}",
+    "python": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\nclass Solution:\n    def findMode(self, root):\n        # Your code here\n        return []\n\n# Driver code - DO NOT MODIFY\ndef buildTree(data):\n    if data == \"[]\":\n        return None\n    \n    values = data[1:-1].split(',')\n    root = TreeNode(int(values[0].strip()))\n    queue = [root]\n    i = 1\n    \n    while queue and i < len(values):\n        current = queue.pop(0)\n        \n        if values[i].strip() != \"null\":\n            current.left = TreeNode(int(values[i].strip()))\n            queue.append(current.left)\n        i += 1\n        \n        if i < len(values) and values[i].strip() != \"null\":\n            current.right = TreeNode(int(values[i].strip()))\n            queue.append(current.right)\n        i += 1\n    \n    return root\n\nif __name__ == \"__main__\":\n    tree_input = input().strip()\n    root = buildTree(tree_input)\n    sol = Solution()\n    result = sol.findMode(root)\n    print(result)"
+  }
+}

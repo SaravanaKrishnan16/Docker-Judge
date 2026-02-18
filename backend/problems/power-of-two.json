@@ -1,0 +1,61 @@
+{
+  "id": "power-of-two",
+  "title": "Power of Two",
+  "difficulty": "Easy",
+  "description": "Given an integer n, return true if it is a power of two. Otherwise, return false.",
+  "examples": [
+    {
+      "input": "1",
+      "output": "true"
+    },
+    {
+      "input": "16",
+      "output": "true"
+    },
+    {
+      "input": "3",
+      "output": "false"
+    }
+  ],
+  "constraints": [
+    "-2^31 <= n <= 2^31 - 1"
+  ],
+  "testcases": [
+    {
+      "input": "1",
+      "output": "true"
+    },
+    {
+      "input": "16",
+      "output": "true"
+    },
+    {
+      "input": "3",
+      "output": "false"
+    },
+    {
+      "input": "4",
+      "output": "true"
+    },
+    {
+      "input": "5",
+      "output": "false"
+    },
+    {
+      "input": "8",
+      "output": "true"
+    },
+    {
+      "input": "0",
+      "output": "false"
+    },
+    {
+      "input": "-1",
+      "output": "false"
+    }
+  ],
+  "templates": {
+    "java": "import java.util.*;\n\nclass Solution {\n    public boolean isPowerOfTwo(int n) {\n        // Your code here\n        return false;\n    }\n}\n\n// Driver code - DO NOT MODIFY\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        \n        Solution sol = new Solution();\n        boolean result = sol.isPowerOfTwo(n);\n        System.out.println(result);\n    }\n}",
+    "python": "class Solution:\n    def isPowerOfTwo(self, n):\n        # Your code here\n        return False\n\n# Driver code - DO NOT MODIFY\nif __name__ == \"__main__\":\n    n = int(input().strip())\n    sol = Solution()\n    result = sol.isPowerOfTwo(n)\n    print(result)"
+  }
+}

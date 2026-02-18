@@ -1,0 +1,37 @@
+{
+  "id": "base-7",
+  "title": "Base 7",
+  "difficulty": "Easy",
+  "description": "Given an integer num, return a string of its base 7 representation.",
+  "examples": [
+    {
+      "input": "num = 100",
+      "output": "\"202\""
+    },
+    {
+      "input": "num = -7",
+      "output": "\"-10\""
+    }
+  ],
+  "constraints": [
+    "-10^7 <= num <= 10^7"
+  ],
+  "testcases": [
+    {
+      "input": "100",
+      "output": "202"
+    },
+    {
+      "input": "-7",
+      "output": "-10"
+    },
+    {
+      "input": "0",
+      "output": "0"
+    }
+  ],
+  "templates": {
+    "java": "class Solution {\n    public String convertToBase7(int num) {\n        // Your code here\n        return \"\";\n    }\n}\n\n// Driver code - DO NOT MODIFY\npublic class Main {\n    public static void main(String[] args) {\n        java.util.Scanner sc = new java.util.Scanner(System.in);\n        int num = sc.nextInt();\n        \n        Solution sol = new Solution();\n        String result = sol.convertToBase7(num);\n        System.out.println(result);\n    }\n}",
+    "python": "class Solution:\n    def convertToBase7(self, num: int) -> str:\n        # Your code here\n        return \"\"\n\n# Driver code - DO NOT MODIFY\nif __name__ == \"__main__\":\n    num = int(input().strip())\n    sol = Solution()\n    result = sol.convertToBase7(num)\n    print(result)"
+  }
+}

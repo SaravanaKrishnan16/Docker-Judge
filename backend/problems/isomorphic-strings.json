@@ -1,0 +1,35 @@
+{
+  "id": "isomorphic-strings",
+  "title": "Isomorphic Strings",
+  "difficulty": "Easy",
+  "description": "Given two strings s and t, determine if they are isomorphic. Two strings are isomorphic if the characters in s can be replaced to get t.",
+  "examples": [
+    {
+      "input": "s = \"egg\", t = \"add\"",
+      "output": "true"
+    }
+  ],
+  "constraints": [
+    "1 <= s.length <= 5 * 10^4",
+    "t.length == s.length",
+    "s and t consist of valid ASCII characters"
+  ],
+  "testcases": [
+    {
+      "input": "egg\nadd",
+      "output": "true"
+    },
+    {
+      "input": "foo\nbar",
+      "output": "false"
+    },
+    {
+      "input": "paper\ntitle",
+      "output": "true"
+    }
+  ],
+  "templates": {
+    "java": "import java.util.*;\n\nclass Solution {\n    public boolean isIsomorphic(String s, String t) {\n        // Your code here\n        return false;\n    }\n}\n\n// Driver code - DO NOT MODIFY\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = sc.nextLine().trim();\n        String t = sc.nextLine().trim();\n        \n        Solution sol = new Solution();\n        boolean result = sol.isIsomorphic(s, t);\n        System.out.println(result);\n    }\n}",
+    "python": "class Solution:\n    def isIsomorphic(self, s, t):\n        # Your code here\n        return False\n\n# Driver code - DO NOT MODIFY\nif __name__ == \"__main__\":\n    s = input().strip()\n    t = input().strip()\n    sol = Solution()\n    result = sol.isIsomorphic(s, t)\n    print(result)"
+  }
+}

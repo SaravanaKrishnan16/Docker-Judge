@@ -1,0 +1,40 @@
+{
+  "id": "binary-search",
+  "title": "Binary Search",
+  "difficulty": "Easy",
+  "description": "Given an array of integers nums which is sorted in ascending order, and an integer target, write a function to search target in nums. If target exists, then return its index. Otherwise, return -1.",
+  "examples": [
+    {
+      "input": "nums = [-1,0,3,5,9,12], target = 9",
+      "output": "4"
+    },
+    {
+      "input": "nums = [-1,0,3,5,9,12], target = 2",
+      "output": "-1"
+    }
+  ],
+  "constraints": [
+    "1 <= nums.length <= 10^4",
+    "-10^4 < nums[i], target < 10^4",
+    "All the integers in nums are unique",
+    "nums is sorted in ascending order"
+  ],
+  "testcases": [
+    {
+      "input": "[-1,0,3,5,9,12]\n9",
+      "output": "4"
+    },
+    {
+      "input": "[-1,0,3,5,9,12]\n2",
+      "output": "-1"
+    },
+    {
+      "input": "[5]\n5",
+      "output": "0"
+    }
+  ],
+  "templates": {
+    "java": "import java.util.*;\n\nclass Solution {\n    public int search(int[] nums, int target) {\n        // Your code here\n        return -1;\n    }\n}\n\n// Driver code - DO NOT MODIFY\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        \n        String arrayInput = sc.nextLine().trim();\n        int target = Integer.parseInt(sc.nextLine().trim());\n        \n        arrayInput = arrayInput.substring(1, arrayInput.length() - 1);\n        int[] nums;\n        if (arrayInput.isEmpty()) {\n            nums = new int[0];\n        } else {\n            String[] parts = arrayInput.split(\",\");\n            nums = new int[parts.length];\n            for (int i = 0; i < parts.length; i++) {\n                nums[i] = Integer.parseInt(parts[i].trim());\n            }\n        }\n        \n        Solution sol = new Solution();\n        int result = sol.search(nums, target);\n        System.out.println(result);\n    }\n}",
+    "python": "class Solution:\n    def search(self, nums, target):\n        # Your code here\n        return -1\n\n# Driver code - DO NOT MODIFY\nif __name__ == \"__main__\":\n    nums_input = input().strip()\n    target = int(input().strip())\n    \n    nums = list(map(int, nums_input[1:-1].split(','))) if nums_input != \"[]\" else []\n    sol = Solution()\n    result = sol.search(nums, target)\n    print(result)"
+  }
+}

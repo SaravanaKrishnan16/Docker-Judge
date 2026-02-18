@@ -1,0 +1,34 @@
+{
+  "id": "best-time-buy-sell-stock",
+  "title": "Best Time to Buy and Sell Stock",
+  "difficulty": "Easy",
+  "description": "You are given an array prices where prices[i] is the price of a given stock on the ith day. You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock. Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.",
+  "examples": [
+    {
+      "input": "[7,1,5,3,6,4]",
+      "output": "5"
+    },
+    {
+      "input": "[7,6,4,3,1]",
+      "output": "0"
+    }
+  ],
+  "constraints": [
+    "1 <= prices.length <= 10^5",
+    "0 <= prices[i] <= 10^4"
+  ],
+  "testcases": [
+    {
+      "input": "[7,1,5,3,6,4]",
+      "output": "5"
+    },
+    {
+      "input": "[7,6,4,3,1]",
+      "output": "0"
+    }
+  ],
+  "templates": {
+    "java": "import java.util.*;\n\nclass Solution {\n    public int maxProfit(int[] prices) {\n        // Your code here\n        return 0;\n    }\n}\n\n// Driver code - DO NOT MODIFY\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String input = sc.nextLine().trim();\n        \n        input = input.substring(1, input.length() - 1);\n        String[] parts = input.split(\",\");\n        int[] prices = new int[parts.length];\n        for (int i = 0; i < parts.length; i++) {\n            prices[i] = Integer.parseInt(parts[i].trim());\n        }\n        \n        Solution sol = new Solution();\n        int result = sol.maxProfit(prices);\n        System.out.println(result);\n    }\n}",
+    "python": "class Solution:\n    def maxProfit(self, prices):\n        # Your code here\n        return 0\n\n# Driver code - DO NOT MODIFY\nif __name__ == \"__main__\":\n    input_str = input().strip()\n    prices = list(map(int, input_str[1:-1].split(','))) if input_str != \"[]\" else []\n    sol = Solution()\n    result = sol.maxProfit(prices)\n    print(result)"
+  }
+}

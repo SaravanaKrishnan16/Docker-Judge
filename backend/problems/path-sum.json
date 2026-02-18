@@ -1,0 +1,35 @@
+{
+  "id": "path-sum",
+  "title": "Path Sum",
+  "difficulty": "Easy",
+  "description": "Given the root of a binary tree and an integer targetSum, return true if the tree has a root-to-leaf path such that adding up all the values along the path equals targetSum.",
+  "examples": [
+    {
+      "input": "[5,4,8,11,null,13,4,7,2,null,null,null,1]\n22",
+      "output": "true"
+    },
+    {
+      "input": "[1,2,3]\n5",
+      "output": "false"
+    }
+  ],
+  "constraints": [
+    "The number of nodes in the tree is in the range [0, 5000].",
+    "-1000 <= Node.val <= 1000",
+    "-1000 <= targetSum <= 1000"
+  ],
+  "testcases": [
+    {
+      "input": "[5,4,8,11,null,13,4,7,2,null,null,null,1]\n22",
+      "output": "true"
+    },
+    {
+      "input": "[1,2,3]\n5",
+      "output": "false"
+    }
+  ],
+  "templates": {
+    "java": "import java.util.*;\n\nclass TreeNode {\n    int val;\n    TreeNode left;\n    TreeNode right;\n    TreeNode(int val) {\n        this.val = val;\n        this.left = null;\n        this.right = null;\n    }\n}\n\nclass Solution {\n    public boolean hasPathSum(TreeNode root, int targetSum) {\n        // Your code here\n        return false;\n    }\n}\n\n// Driver code - DO NOT MODIFY\npublic class Main {\n    public static TreeNode buildTree(String input) {\n        if (input.equals(\"[]\")) return null;\n        \n        input = input.substring(1, input.length() - 1);\n        String[] values = input.split(\",\");\n        TreeNode root = new TreeNode(Integer.parseInt(values[0].trim()));\n        Queue<TreeNode> queue = new LinkedList<>();\n        queue.add(root);\n        \n        int i = 1;\n        while (!queue.isEmpty() && i < values.length) {\n            TreeNode current = queue.poll();\n            \n            if (!values[i].trim().equals(\"null\")) {\n                current.left = new TreeNode(Integer.parseInt(values[i].trim()));\n                queue.add(current.left);\n            }\n            i++;\n            \n            if (i < values.length && !values[i].trim().equals(\"null\")) {\n                current.right = new TreeNode(Integer.parseInt(values[i].trim()));\n                queue.add(current.right);\n            }\n            i++;\n        }\n        return root;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String treeInput = sc.nextLine().trim();\n        int targetSum = sc.nextInt();\n        \n        TreeNode root = buildTree(treeInput);\n        Solution sol = new Solution();\n        boolean result = sol.hasPathSum(root, targetSum);\n        \n        System.out.println(result);\n    }\n}",
+    "python": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\nclass Solution:\n    def hasPathSum(self, root, targetSum):\n        # Your code here\n        return False\n\n# Driver code - DO NOT MODIFY\ndef buildTree(data):\n    if data == \"[]\":\n        return None\n    values = data[1:-1].split(',')\n    root = TreeNode(int(values[0].strip()))\n    queue = [root]\n    i = 1\n    \n    while queue and i < len(values):\n        current = queue.pop(0)\n        \n        if values[i].strip() != \"null\":\n            current.left = TreeNode(int(values[i].strip()))\n            queue.append(current.left)\n        i += 1\n        \n        if i < len(values) and values[i].strip() != \"null\":\n            current.right = TreeNode(int(values[i].strip()))\n            queue.append(current.right)\n        i += 1\n    return root\n\nif __name__ == \"__main__\":\n    tree_input = input().strip()\n    targetSum = int(input().strip())\n    root = buildTree(tree_input)\n    sol = Solution()\n    result = sol.hasPathSum(root, targetSum)\n    print(result)"
+  }
+}

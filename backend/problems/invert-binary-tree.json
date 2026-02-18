@@ -1,0 +1,42 @@
+{
+  "id": "invert-binary-tree",
+  "title": "Invert Binary Tree",
+  "difficulty": "Easy",
+  "description": "Given the root of a binary tree, invert the tree, and return its root.",
+  "examples": [
+    {
+      "input": "[4,2,7,1,3,6,9]",
+      "output": "[4,7,2,9,6,3,1]"
+    },
+    {
+      "input": "[2,1,3]",
+      "output": "[2,3,1]"
+    },
+    {
+      "input": "[]",
+      "output": "[]"
+    }
+  ],
+  "constraints": [
+    "The number of nodes in the tree is in the range [0, 100].",
+    "-100 <= Node.val <= 100"
+  ],
+  "testcases": [
+    {
+      "input": "[4,2,7,1,3,6,9]",
+      "output": "[4,7,2,9,6,3,1]"
+    },
+    {
+      "input": "[2,1,3]",
+      "output": "[2,3,1]"
+    },
+    {
+      "input": "[]",
+      "output": "[]"
+    }
+  ],
+  "templates": {
+    "java": "import java.util.*;\n\nclass TreeNode {\n    int val;\n    TreeNode left;\n    TreeNode right;\n    TreeNode(int val) {\n        this.val = val;\n        this.left = null;\n        this.right = null;\n    }\n}\n\nclass Solution {\n    public TreeNode invertTree(TreeNode root) {\n        // Your code here\n        return root;\n    }\n}\n\n// Driver code - DO NOT MODIFY\npublic class Main {\n    public static TreeNode buildTree(String input) {\n        if (input.equals(\"[]\")) return null;\n        \n        input = input.substring(1, input.length() - 1);\n        String[] values = input.split(\",\");\n        TreeNode root = new TreeNode(Integer.parseInt(values[0].trim()));\n        Queue<TreeNode> queue = new LinkedList<>();\n        queue.add(root);\n        \n        int i = 1;\n        while (!queue.isEmpty() && i < values.length) {\n            TreeNode current = queue.poll();\n            \n            if (!values[i].trim().equals(\"null\")) {\n                current.left = new TreeNode(Integer.parseInt(values[i].trim()));\n                queue.add(current.left);\n            }\n            i++;\n            \n            if (i < values.length && !values[i].trim().equals(\"null\")) {\n                current.right = new TreeNode(Integer.parseInt(values[i].trim()));\n                queue.add(current.right);\n            }\n            i++;\n        }\n        return root;\n    }\n\n    public static List<String> serializeTree(TreeNode root) {\n        List<String> result = new ArrayList<>();\n        if (root == null) return result;\n        Queue<TreeNode> queue = new LinkedList<>();\n        queue.add(root);\n        \n        while (!queue.isEmpty()) {\n            TreeNode node = queue.poll();\n            if (node == null) {\n                result.add(\"null\");\n            } else {\n                result.add(String.valueOf(node.val));\n                queue.add(node.left);\n                queue.add(node.right);\n            }\n        }\n        \n        while (result.size() > 0 && result.get(result.size() - 1).equals(\"null\")) {\n            result.remove(result.size() - 1);\n        }\n        return result;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String input = sc.nextLine().trim();\n        \n        TreeNode root = buildTree(input);\n        Solution sol = new Solution();\n        TreeNode inverted = sol.invertTree(root);\n        \n        System.out.println(serializeTree(inverted));\n    }\n}",
+    "python": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\nclass Solution:\n    def invertTree(self, root):\n        # Your code here\n        return root\n\n# Driver code - DO NOT MODIFY\ndef buildTree(data):\n    if data == \"[]\":\n        return None\n    values = data[1:-1].split(',')\n    root = TreeNode(int(values[0].strip()))\n    queue = [root]\n    i = 1\n    \n    while queue and i < len(values):\n        current = queue.pop(0)\n        \n        if values[i].strip() != \"null\":\n            current.left = TreeNode(int(values[i].strip()))\n            queue.append(current.left)\n        i += 1\n        \n        if i < len(values) and values[i].strip() != \"null\":\n            current.right = TreeNode(int(values[i].strip()))\n            queue.append(current.right)\n        i += 1\n    return root\n\ndef serializeTree(root):\n    if not root:\n        return []\n    result = []\n    queue = [root]\n    while queue:\n        node = queue.pop(0)\n        if node:\n            result.append(str(node.val))\n            queue.append(node.left)\n            queue.append(node.right)\n        else:\n            result.append(\"null\")\n    while result and result[-1] == \"null\":\n        result.pop()\n    return result\n\nif __name__ == \"__main__\":\n    tree_input = input().strip()\n    root = buildTree(tree_input)\n    sol = Solution()\n    inverted = sol.invertTree(root)\n    print(serializeTree(inverted))"
+  }
+}

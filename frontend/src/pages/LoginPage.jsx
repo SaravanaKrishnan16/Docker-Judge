@@ -1,0 +1,181 @@
+import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
+import { useTheme } from '../contexts/ThemeContext';
+import AnimatedBackground from '../components/AnimatedBackground';
+import { EyeIcon, EyeSlashIcon, EnvelopeIcon, LockClosedIcon } from '@heroicons/react/24/outline';
+
+const LoginPage = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const { login } = useAuth();
+  const { theme } = useTheme();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    setIsLoading(true);
+
+    try {
+      await login(email, password);
+      navigate('/');
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <div className={`min-h-screen relative overflow-hidden ${
+      theme === 'dark' 
+        ? 'bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950' 
+        : 'bg-gradient-to-br from-gray-50 via-white to-gray-100'
+    }`}>
+      <AnimatedBackground />
+      
+      <div className="relative z-10 min-h-screen flex items-center justify-center px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 50, scale: 0.9 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
+          className={`w-full max-w-md p-8 rounded-3xl backdrop-blur-xl border shadow-2xl ${
+            theme === 'dark' 
+              ? 'bg-slate-800/40 border-slate-700/50' 
+              : 'bg-white/70 border-gray-300/50'
+          }`}
+        >
+          <div className="text-center mb-8">
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+              className="w-16 h-16 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4"
+            >
+              <LockClosedIcon className="w-8 h-8 text-white" />
+            </motion.div>
+            
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className={`text-3xl font-bold mb-2 ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}
+            >
+              Welcome Back
+            </motion.h1>
+            
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className={`${theme === 'dark' ? 'text-slate-400' : 'text-gray-600'}`}
+            >
+              Sign in to continue to DockerJudge
+            </motion.p>
+          </div>
+
+          <motion.form
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+            onSubmit={handleSubmit}
+            className="space-y-6"
+          >
+            <div>
+              <label className={`block text-sm font-medium mb-2 ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
+                Email
+              </label>
+              <div className="relative">
+                <EnvelopeIcon className={`absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`} />
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className={`w-full pl-10 pr-4 py-3 rounded-xl border-2 transition-all duration-300 focus:scale-[1.02] ${
+                    theme === 'dark'
+                      ? 'bg-slate-900/50 border-slate-600 text-white placeholder-gray-400 focus:border-blue-500 focus:bg-slate-900/80'
+                      : 'bg-white/80 border-gray-300 text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:bg-white'
+                  } focus:outline-none focus:ring-4 focus:ring-blue-500/20`}
+                  placeholder="Enter your email"
+                  required
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className={`block text-sm font-medium mb-2 ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
+                Password
+              </label>
+              <div className="relative">
+                <LockClosedIcon className={`absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`} />
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className={`w-full pl-10 pr-12 py-3 rounded-xl border-2 transition-all duration-300 focus:scale-[1.02] ${
+                    theme === 'dark'
+                      ? 'bg-slate-900/50 border-slate-600 text-white placeholder-gray-400 focus:border-blue-500 focus:bg-slate-900/80'
+                      : 'bg-white/80 border-gray-300 text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:bg-white'
+                  } focus:outline-none focus:ring-4 focus:ring-blue-500/20`}
+                  placeholder="Enter your password"
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className={`absolute right-3 top-1/2 transform -translate-y-1/2 ${theme === 'dark' ? 'text-gray-400 hover:text-white' : 'text-gray-500 hover:text-gray-900'}`}
+                >
+                  {showPassword ? <EyeSlashIcon className="w-5 h-5" /> : <EyeIcon className="w-5 h-5" />}
+                </button>
+              </div>
+            </div>
+
+            {error && (
+              <motion.div
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="p-3 bg-red-500/10 border border-red-500/20 rounded-xl text-red-500 text-sm"
+              >
+                {error}
+              </motion.div>
+            )}
+
+            <motion.button
+              type="submit"
+              disabled={isLoading}
+              whileHover={{ scale: 1.02, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              className="w-full py-3 bg-gradient-to-r from-indigo-500 via-purple-600 to-pink-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {isLoading ? 'Signing In...' : 'Sign In'}
+            </motion.button>
+          </motion.form>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6 }}
+            className="mt-8 text-center"
+          >
+            <p className={`${theme === 'dark' ? 'text-slate-400' : 'text-gray-600'}`}>
+              Don't have an account?{' '}
+              <Link
+                to="/signup"
+                className="text-blue-500 hover:text-blue-400 font-medium transition-colors"
+              >
+                Sign up
+              </Link>
+            </p>
+          </motion.div>
+        </motion.div>
+      </div>
+    </div>
+  );
+};
+
+export default LoginPage;
