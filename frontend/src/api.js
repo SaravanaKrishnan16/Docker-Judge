@@ -3,7 +3,11 @@
  * Handles all communication with DockerJudge backend
  */
 
+<<<<<<< HEAD
 const API_BASE_URL = '/api';
+=======
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
+>>>>>>> 124c7d68b545197e2970aa4afbfd8ea59bdb4455
 
 /**
  * Execute code on the backend
@@ -50,6 +54,7 @@ export async function executeCode(language, code, input = '') {
  */
 export async function getProblems() {
   try {
+<<<<<<< HEAD
     console.log('Making API call to:', `${API_BASE_URL}/problems`);
     const response = await fetch(`${API_BASE_URL}/problems`);
     console.log('Response status:', response.status);
@@ -60,6 +65,13 @@ export async function getProblems() {
     const data = await response.json();
     console.log('API returned data:', data);
     return data;
+=======
+    const response = await fetch(`${API_BASE_URL}/problems`);
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+    return await response.json();
+>>>>>>> 124c7d68b545197e2970aa4afbfd8ea59bdb4455
   } catch (error) {
     console.error('Failed to fetch problems:', error);
     return [];

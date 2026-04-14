@@ -85,7 +85,11 @@ function ProblemDetailPage() {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 60000); // 60 second timeout
       
+<<<<<<< HEAD
       const response = await fetch('http://127.0.0.1:62971/api/submit', {
+=======
+      const response = await fetch('http://localhost:8000/api/submit', {
+>>>>>>> 124c7d68b545197e2970aa4afbfd8ea59bdb4455
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

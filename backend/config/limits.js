@@ -5,6 +5,7 @@
 
 const LIMITS = {
   // Timeout in milliseconds
+<<<<<<< HEAD
   EXECUTION_TIMEOUT_MS: 600000,
 
   // Time limits for different solution types (per testcase)
@@ -17,6 +18,20 @@ const LIMITS = {
 
   // Memory limit in megabytes
   MEMORY_LIMIT_MB: 4096,
+=======
+  EXECUTION_TIMEOUT_MS: 300000,
+
+  // Time limits for different solution types (per testcase)
+  TIME_LIMITS: {
+    OPTIMAL: 1000,      // 1 second for optimal solutions
+    ACCEPTABLE: 3000,   // 3 seconds for acceptable solutions
+    BRUTE_FORCE: 5000,  // 5 seconds for brute force (will be flagged)
+    HARD_LIMIT: 10000   // 10 seconds absolute limit
+  },
+
+  // Memory limit in megabytes
+  MEMORY_LIMIT_MB: 2048,
+>>>>>>> 124c7d68b545197e2970aa4afbfd8ea59bdb4455
 
   // CPU limit (fraction of 1 core)
   CPU_LIMIT: 1.0,

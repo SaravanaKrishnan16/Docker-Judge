@@ -18,12 +18,15 @@ function getDockerRunArgs(language, tempDir) {
     '--rm',
     '--volume', `${tempDir}:/tmp/code`,
     '--workdir', '/tmp/code',
+<<<<<<< HEAD
     '--memory', `${LIMITS.MEMORY_LIMIT_MB}m`,
     '--cpus', LIMITS.CPU_LIMIT.toString(),
     '--pids-limit', LIMITS.PID_LIMIT.toString(),
     '--network', 'none',
     '--read-only',
     '--tmpfs', '/tmp:rw,noexec,nosuid,size=100m',
+=======
+>>>>>>> 124c7d68b545197e2970aa4afbfd8ea59bdb4455
     imageName
   ];
 }
@@ -37,7 +40,11 @@ function getDockerRunArgs(language, tempDir) {
  */
 function getContainerCommand(language, code = '', input = '') {
   const commands = {
+<<<<<<< HEAD
     python: ['python3', 'solution.py'],
+=======
+    python: input ? ['sh', '-c', 'python3 solution.py < input.txt'] : ['python3', 'solution.py'],
+>>>>>>> 124c7d68b545197e2970aa4afbfd8ea59bdb4455
     java: ['java', '-cp', '.', 'Main']
   };
 

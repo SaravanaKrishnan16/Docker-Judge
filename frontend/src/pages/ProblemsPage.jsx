@@ -59,10 +59,14 @@ function ProblemsPage() {
 
   const fetchProblems = async () => {
     try {
+<<<<<<< HEAD
       console.log('Fetching problems from:', `http://127.0.0.1:62971/api/problems`);
       const data = await getProblems();
       console.log('Received problems data:', data);
       console.log('Number of problems:', data.length);
+=======
+      const data = await getProblems();
+>>>>>>> 124c7d68b545197e2970aa4afbfd8ea59bdb4455
       setProblems(data);
     } catch (error) {
       console.error('Failed to fetch problems:', error);

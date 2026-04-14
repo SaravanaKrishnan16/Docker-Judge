@@ -159,8 +159,12 @@ async function executeCodeInDocker(language, code, input = '') {
         language,
         hostTempDir,
         execCommand,
+<<<<<<< HEAD
         false,
         input
+=======
+        false
+>>>>>>> 124c7d68b545197e2970aa4afbfd8ea59bdb4455
       );
 
       console.log(`[${executionId}] Execution result:`, {
@@ -210,10 +214,16 @@ async function executeCodeInDocker(language, code, input = '') {
  * @param {boolean} isCompilation - Whether this is a compilation step
  * @returns {Promise<Object>} {stdout, stderr, exitCode, executionTimeMs, memoryKb}
  */
+<<<<<<< HEAD
 function executeInContainer(language, tempDir, command, isCompilation = false, input = '') {
   return new Promise((resolve) => {
     const startTime = Date.now();
     const timeoutMs = isCompilation ? 60000 : LIMITS.TIME_LIMITS.HARD_LIMIT; // Use config limits
+=======
+function executeInContainer(language, tempDir, command, isCompilation = false) {
+  return new Promise((resolve) => {
+    const startTime = Date.now();
+>>>>>>> 124c7d68b545197e2970aa4afbfd8ea59bdb4455
     
     try {
       // Build docker command
@@ -221,10 +231,13 @@ function executeInContainer(language, tempDir, command, isCompilation = false, i
       const fullCommand = [...args, ...command];
       
       console.log(`[DOCKER] Running: docker ${fullCommand.join(' ')}`);
+<<<<<<< HEAD
       console.log(`[DOCKER] Timeout set to: ${timeoutMs}ms`);
       if (input) {
         console.log(`[DOCKER] Input provided: ${input.substring(0, 50)}...`);
       }
+=======
+>>>>>>> 124c7d68b545197e2970aa4afbfd8ea59bdb4455
 
       const child = spawn('docker', fullCommand, {
         stdio: ['pipe', 'pipe', 'pipe']
@@ -232,6 +245,7 @@ function executeInContainer(language, tempDir, command, isCompilation = false, i
 
       let stdout = '';
       let stderr = '';
+<<<<<<< HEAD
       let timeoutHandle;
 
       // Send input to stdin if provided
@@ -252,6 +266,8 @@ function executeInContainer(language, tempDir, command, isCompilation = false, i
           memoryKb: 0
         });
       }, timeoutMs);
+=======
+>>>>>>> 124c7d68b545197e2970aa4afbfd8ea59bdb4455
 
       child.stdout.on('data', (data) => {
         stdout += data.toString();
@@ -262,9 +278,13 @@ function executeInContainer(language, tempDir, command, isCompilation = false, i
       });
 
       child.on('close', (code) => {
+<<<<<<< HEAD
         clearTimeout(timeoutHandle);
         const executionTime = Date.now() - startTime;
         console.log(`[DOCKER] Process completed in ${executionTime}ms with exit code ${code}`);
+=======
+        const executionTime = Date.now() - startTime;
+>>>>>>> 124c7d68b545197e2970aa4afbfd8ea59bdb4455
         resolve({
           stdout: stdout.trim(),
           stderr: stderr.trim(),
@@ -275,8 +295,11 @@ function executeInContainer(language, tempDir, command, isCompilation = false, i
       });
 
       child.on('error', (error) => {
+<<<<<<< HEAD
         clearTimeout(timeoutHandle);
         console.log(`[DOCKER] Process error: ${error.message}`);
+=======
+>>>>>>> 124c7d68b545197e2970aa4afbfd8ea59bdb4455
         resolve({
           stdout: '',
           stderr: error.message,
@@ -287,7 +310,10 @@ function executeInContainer(language, tempDir, command, isCompilation = false, i
       });
 
     } catch (error) {
+<<<<<<< HEAD
       console.log(`[DOCKER] Spawn error: ${error.message}`);
+=======
+>>>>>>> 124c7d68b545197e2970aa4afbfd8ea59bdb4455
       resolve({
         stdout: '',
         stderr: error.message,

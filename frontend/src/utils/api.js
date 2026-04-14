@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 const API_BASE = '/api';
+=======
+const API_BASE = 'http://localhost:8000/api';
+>>>>>>> 124c7d68b545197e2970aa4afbfd8ea59bdb4455
 
 export const api = {
   async execute(code, language, input = '') {

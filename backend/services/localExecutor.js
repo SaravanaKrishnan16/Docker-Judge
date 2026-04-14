@@ -36,7 +36,11 @@ async function executeJavaLocally(code, input = '') {
       // Compile Java
       execSync(`javac "${javaFile}"`, { 
         cwd: tempDir, 
+<<<<<<< HEAD
         timeout: 60000,
+=======
+        timeout: 10000,
+>>>>>>> 124c7d68b545197e2970aa4afbfd8ea59bdb4455
         stdio: 'pipe'
       });
       
@@ -47,7 +51,11 @@ async function executeJavaLocally(code, input = '') {
         
       const output = execSync(command, { 
         cwd: tempDir, 
+<<<<<<< HEAD
         timeout: 120000,
+=======
+        timeout: 5000,
+>>>>>>> 124c7d68b545197e2970aa4afbfd8ea59bdb4455
         encoding: 'utf8',
         stdio: 'pipe'
       });
@@ -129,7 +137,11 @@ async function executePythonLocally(code, input = '') {
         
       const output = execSync(command, { 
         cwd: tempDir, 
+<<<<<<< HEAD
         timeout: 120000,
+=======
+        timeout: 5000,
+>>>>>>> 124c7d68b545197e2970aa4afbfd8ea59bdb4455
         encoding: 'utf8',
         stdio: 'pipe'
       });
