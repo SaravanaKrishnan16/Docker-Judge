@@ -1,0 +1,81 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  labels:
+    app: dockerjudge-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: dockerjudge-backend
+  template:
+    metadata:
+      labels:
+        app: dockerjudge-backend
+    spec:
+      containers:
+      - name: backend
+        image: saravanakrishnan/dockerjudge-backend:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8000
+        env:
+        - name: NODE_ENV
+          value: "production"
+        - name: PORT
+          value: "8000"
+        - name: HOST
+          value: "0.0.0.0"
+        - name: HOST_TMP_DIR
+          value: "/tmp/dockerjudge"
+        volumeMounts:
+        - name: docker-sock
+          mountPath: /var/run/docker.sock
+        - name: temp-storage
+          mountPath: /tmp/dockerjudge
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        securityContext:
+          privileged: true
+      volumes:
+      - name: docker-sock
+        hostPath:
+          path: /var/run/docker.sock
+      - name: temp-storage
+        hostPath:
+          path: /tmp/dockerjudge
+          type: DirectoryOrCreate
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+  labels:
+    app: dockerjudge-backend
+spec:
+  selector:
+    app: dockerjudge-backend
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 9000
+    targetPort: 8000
+    nodePort: 30800

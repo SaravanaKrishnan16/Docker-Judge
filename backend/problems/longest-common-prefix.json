@@ -1,0 +1,47 @@
+{
+  "id": "longest-common-prefix",
+  "title": "Longest Common Prefix",
+  "difficulty": "Easy",
+  "description": "Write a function to find the longest common prefix string amongst an array of strings. If there is no common prefix, return an empty string.",
+  "examples": [
+    {
+      "input": "[\"flower\",\"flow\",\"flight\"]",
+      "output": "\"fl\""
+    },
+    {
+      "input": "[\"dog\",\"racecar\",\"car\"]",
+      "output": "\"\""
+    }
+  ],
+  "constraints": [
+    "1 <= strs.length <= 200",
+    "0 <= strs[i].length <= 200",
+    "strs[i] consists of only lowercase English letters"
+  ],
+  "testcases": [
+    {
+      "input": "[\"flower\",\"flow\",\"flight\"]",
+      "output": "fl"
+    },
+    {
+      "input": "[\"dog\",\"racecar\",\"car\"]",
+      "output": ""
+    },
+    {
+      "input": "[\"interspecies\",\"interstellar\",\"interstate\"]",
+      "output": "inters"
+    },
+    {
+      "input": "[\"throne\",\"throne\"]",
+      "output": "throne"
+    },
+    {
+      "input": "[\"single\"]",
+      "output": "single"
+    }
+  ],
+  "templates": {
+    "java": "import java.util.*;\n\nclass Solution {\n    public String longestCommonPrefix(String[] strs) {\n        // Your code here\n        return \"\";\n    }\n}\n\n// Driver code - DO NOT MODIFY\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String input = sc.nextLine().trim();\n        \n        input = input.substring(1, input.length() - 1);\n        String[] strs;\n        if (input.isEmpty()) {\n            strs = new String[0];\n        } else {\n            String[] parts = input.split(\",\");\n            strs = new String[parts.length];\n            for (int i = 0; i < parts.length; i++) {\n                strs[i] = parts[i].trim().replaceAll(\"^\\\"|\\\"$\", \"\");\n            }\n        }\n        \n        Solution sol = new Solution();\n        System.out.println(sol.longestCommonPrefix(strs));\n    }\n}",
+    "python": "class Solution:\n    def longestCommonPrefix(self, strs):\n        # Your code here\n        return \"\"\n\n# Driver code - DO NOT MODIFY\nif __name__ == \"__main__\":\n    strs_input = input().strip()\n    strs = [s.strip().strip('\"') for s in strs_input[1:-1].split(',')] if strs_input != \"[]\" else []\n    sol = Solution()\n    result = sol.longestCommonPrefix(strs)\n    print(result)"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "id": "reverse-integer",
+  "title": "Reverse Integer",
+  "difficulty": "Medium",
+  "description": "Given a signed 32-bit integer x, return x with its digits reversed. If reversing x causes the value to go outside the signed 32-bit integer range, return 0.",
+  "examples": [
+    {
+      "input": "123",
+      "output": "321"
+    },
+    {
+      "input": "-123",
+      "output": "-321"
+    },
+    {
+      "input": "120",
+      "output": "21"
+    }
+  ],
+  "constraints": [
+    "-2^31 <= x <= 2^31 - 1"
+  ],
+  "testcases": [
+    {
+      "input": "123",
+      "output": "321"
+    },
+    {
+      "input": "-123",
+      "output": "-321"
+    },
+    {
+      "input": "120",
+      "output": "21"
+    },
+    {
+      "input": "0",
+      "output": "0"
+    },
+    {
+      "input": "1534236469",
+      "output": "0"
+    },
+    {
+      "input": "-2147483648",
+      "output": "0"
+    }
+  ],
+  "templates": {
+    "java": "import java.util.*;\n\nclass Solution {\n    public int reverse(int x) {\n        // Your code here\n        return 0;\n    }\n}\n\n// Driver code - DO NOT MODIFY\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int x = sc.nextInt();\n        \n        Solution sol = new Solution();\n        int result = sol.reverse(x);\n        System.out.println(result);\n    }\n}",
+    "python": "class Solution:\n    def reverse(self, x):\n        # Your code here\n        return 0\n\n# Driver code - DO NOT MODIFY\nif __name__ == \"__main__\":\n    x = int(input().strip())\n    sol = Solution()\n    result = sol.reverse(x)\n    print(result)"
+  }
+}

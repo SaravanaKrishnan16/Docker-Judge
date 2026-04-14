@@ -1,0 +1,49 @@
+{
+  "id": "palindrome-number",
+  "title": "Palindrome Number",
+  "difficulty": "Easy",
+  "description": "Given an integer x, return true if x is a palindrome, and false otherwise.",
+  "examples": [
+    {
+      "input": "121",
+      "output": "true"
+    },
+    {
+      "input": "-121",
+      "output": "false"
+    },
+    {
+      "input": "10",
+      "output": "false"
+    }
+  ],
+  "constraints": [
+    "-2^31 <= x <= 2^31 - 1"
+  ],
+  "testcases": [
+    {
+      "input": "121",
+      "output": "true"
+    },
+    {
+      "input": "-121",
+      "output": "false"
+    },
+    {
+      "input": "10",
+      "output": "false"
+    },
+    {
+      "input": "0",
+      "output": "true"
+    },
+    {
+      "input": "1221",
+      "output": "true"
+    }
+  ],
+  "templates": {
+    "java": "import java.util.*;\n\nclass Solution {\n    public boolean isPalindrome(int x) {\n        // Your code here\n        return false;\n    }\n}\n\n// Driver code - DO NOT MODIFY\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int x = sc.nextInt();\n        \n        Solution sol = new Solution();\n        boolean result = sol.isPalindrome(x);\n        System.out.println(result);\n    }\n}",
+    "python": "class Solution:\n    def isPalindrome(self, x):\n        # Your code here\n        return False\n\n# Driver code - DO NOT MODIFY\nif __name__ == \"__main__\":\n    x = int(input().strip())\n    sol = Solution()\n    result = sol.isPalindrome(x)\n    print(result)"
+  }
+}

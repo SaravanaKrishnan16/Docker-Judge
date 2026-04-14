@@ -1,0 +1,34 @@
+{
+  "id": "valid-anagram",
+  "title": "Valid Anagram",
+  "difficulty": "Easy",
+  "description": "Given two strings s and t, return true if t is an anagram of s, and false otherwise.",
+  "examples": [
+    {
+      "input": "anagram\nnagaram",
+      "output": "true"
+    },
+    {
+      "input": "rat\ncar",
+      "output": "false"
+    }
+  ],
+  "constraints": [
+    "1 <= s.length, t.length <= 5 * 10^4",
+    "s and t consist of lowercase English letters"
+  ],
+  "testcases": [
+    {
+      "input": "anagram\nnagaram",
+      "output": "true"
+    },
+    {
+      "input": "rat\ncar",
+      "output": "false"
+    }
+  ],
+  "templates": {
+    "java": "import java.util.*;\n\nclass Solution {\n    public boolean isAnagram(String s, String t) {\n        // Your code here\n        return false;\n    }\n}\n\n// Driver code - DO NOT MODIFY\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = sc.nextLine().trim();\n        String t = sc.nextLine().trim();\n        \n        Solution sol = new Solution();\n        boolean result = sol.isAnagram(s, t);\n        System.out.println(result);\n    }\n}",
+    "python": "class Solution:\n    def isAnagram(self, s, t):\n        # Your code here\n        return False\n\n# Driver code - DO NOT MODIFY\nif __name__ == \"__main__\":\n    s = input().strip()\n    t = input().strip()\n    sol = Solution()\n    result = sol.isAnagram(s, t)\n    print(result)"
+  }
+}

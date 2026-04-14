@@ -1,0 +1,39 @@
+{
+  "id": "squares-sorted-array",
+  "title": "Squares of a Sorted Array",
+  "difficulty": "Easy",
+  "description": "Given an integer array nums sorted in non-decreasing order, return an array of the squares of each number sorted in non-decreasing order.",
+  "examples": [
+    {
+      "input": "nums = [-4,-1,0,3,10]",
+      "output": "[0,1,9,16,100]"
+    },
+    {
+      "input": "nums = [-7,-3,2,3,11]",
+      "output": "[4,9,9,49,121]"
+    }
+  ],
+  "constraints": [
+    "1 <= nums.length <= 10^4",
+    "-10^4 <= nums[i] <= 10^4",
+    "nums is sorted in non-decreasing order"
+  ],
+  "testCases": [
+    {
+      "input": "[-4,-1,0,3,10]",
+      "expectedOutput": "[0,1,9,16,100]"
+    },
+    {
+      "input": "[-7,-3,2,3,11]",
+      "expectedOutput": "[4,9,9,49,121]"
+    },
+    {
+      "input": "[-5,-3,-2,-1]",
+      "expectedOutput": "[1,4,9,25]"
+    }
+  ],
+  "templates": {
+    "java": "import java.util.*;\n\nclass Solution {\n    public void solve() {\n        // Your code here\n    }\n}\n\n// Driver code - DO NOT MODIFY\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        \n        Solution sol = new Solution();\n        sol.solve();\n    }\n}",
+    "python": "class Solution:\n    def solve(self):\n        # Your code here\n        pass\n\n# Driver code - DO NOT MODIFY\nif __name__ == \"__main__\":\n    sol = Solution()\n    sol.solve()"
+  }
+}

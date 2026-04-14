@@ -1,0 +1,37 @@
+{
+  "id": "first-bad-version",
+  "title": "First Bad Version",
+  "difficulty": "Easy",
+  "description": "You are given n versions [1, 2, ..., n]. One version is bad, and all versions after it are also bad. Given n and the first bad version, return the index of the first bad version.",
+  "examples": [
+    {
+      "input": "n = 5, bad = 4",
+      "output": "4"
+    },
+    {
+      "input": "n = 1, bad = 1",
+      "output": "1"
+    }
+  ],
+  "constraints": [
+    "1 <= bad <= n <= 2^31 - 1"
+  ],
+  "testcases": [
+    {
+      "input": "5\n4",
+      "output": "4"
+    },
+    {
+      "input": "1\n1",
+      "output": "1"
+    },
+    {
+      "input": "3\n2",
+      "output": "2"
+    }
+  ],
+  "templates": {
+    "java": "import java.util.*;\n\nclass VersionControl {\n    int bad;\n    VersionControl(int bad) {\n        this.bad = bad;\n    }\n    boolean isBadVersion(int version) {\n        return version >= bad;\n    }\n}\n\nclass Solution extends VersionControl {\n    Solution(int bad) {\n        super(bad);\n    }\n\n    public int firstBadVersion(int n) {\n        // Your code here\n        return -1;\n    }\n}\n\n// Driver code - DO NOT MODIFY\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        int bad = sc.nextInt();\n        \n        Solution sol = new Solution(bad);\n        System.out.println(sol.firstBadVersion(n));\n    }\n}",
+    "python": "class VersionControl:\n    def __init__(self, bad):\n        self.bad = bad\n\n    def isBadVersion(self, version):\n        return version >= self.bad\n\nclass Solution(VersionControl):\n    def __init__(self, bad):\n        super().__init__(bad)\n\n    def firstBadVersion(self, n):\n        # Your code here\n        return -1\n\n# Driver code - DO NOT MODIFY\nif __name__ == \"__main__\":\n    n = int(input().strip())\n    bad = int(input().strip())\n    sol = Solution(bad)\n    print(sol.firstBadVersion(n))"
+  }
+}

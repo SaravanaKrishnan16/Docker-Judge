@@ -1,0 +1,42 @@
+{
+  "id": "longest-uncommon-subsequence",
+  "title": "Longest Uncommon Subsequence I",
+  "difficulty": "Easy",
+  "description": "Given two strings a and b, return the length of the longest uncommon subsequence between them. If no such uncommon subsequence exists, return -1. An uncommon subsequence is a string that is a subsequence of exactly one of the two strings.",
+  "examples": [
+    {
+      "input": "a = \"aba\", b = \"cdc\"",
+      "output": "3"
+    },
+    {
+      "input": "a = \"aaa\", b = \"bbb\"",
+      "output": "3"
+    },
+    {
+      "input": "a = \"aaa\", b = \"aaa\"",
+      "output": "-1"
+    }
+  ],
+  "constraints": [
+    "1 <= a.length, b.length <= 100",
+    "a and b consist of lowercase English letters"
+  ],
+  "testcases": [
+    {
+      "input": "aba\ncdc",
+      "output": "3"
+    },
+    {
+      "input": "aaa\nbbb",
+      "output": "3"
+    },
+    {
+      "input": "aaa\naaa",
+      "output": "-1"
+    }
+  ],
+  "templates": {
+    "java": "import java.util.*;\n\nclass Solution {\n    public int findLUSlength(String a, String b) {\n        // Your code here\n        return 0;\n    }\n}\n\n// Driver code - DO NOT MODIFY\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String a = sc.nextLine().trim();\n        String b = sc.nextLine().trim();\n        \n        Solution sol = new Solution();\n        System.out.println(sol.findLUSlength(a, b));\n    }\n}",
+    "python": "class Solution:\n    def findLUSlength(self, a, b):\n        # Your code here\n        return 0\n\n# Driver code - DO NOT MODIFY\nif __name__ == \"__main__\":\n    a = input().strip()\n    b = input().strip()\n    sol = Solution()\n    print(sol.findLUSlength(a, b))"
+  }
+}

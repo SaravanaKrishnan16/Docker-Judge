@@ -1,0 +1,45 @@
+{
+  "id": "perfect-number",
+  "title": "Perfect Number",
+  "difficulty": "Easy",
+  "description": "A perfect number is a positive integer that is equal to the sum of its positive divisors, excluding itself. Given an integer num, return true if it is a perfect number, otherwise return false.",
+  "examples": [
+    {
+      "input": "28",
+      "output": "true"
+    },
+    {
+      "input": "7",
+      "output": "false"
+    }
+  ],
+  "constraints": [
+    "1 <= num <= 10^8"
+  ],
+  "testcases": [
+    {
+      "input": "28",
+      "output": "true"
+    },
+    {
+      "input": "7",
+      "output": "false"
+    },
+    {
+      "input": "6",
+      "output": "true"
+    },
+    {
+      "input": "1",
+      "output": "false"
+    },
+    {
+      "input": "496",
+      "output": "true"
+    }
+  ],
+  "templates": {
+    "java": "import java.util.*;\n\nclass Solution {\n    public boolean checkPerfectNumber(int num) {\n        // Your code here\n        return false;\n    }\n}\n\n// Driver code - DO NOT MODIFY\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int num = sc.nextInt();\n        \n        Solution sol = new Solution();\n        boolean result = sol.checkPerfectNumber(num);\n        System.out.println(result);\n    }\n}",
+    "python": "class Solution:\n    def checkPerfectNumber(self, num):\n        # Your code here\n        return False\n\n# Driver code - DO NOT MODIFY\nif __name__ == \"__main__\":\n    num = int(input().strip())\n    sol = Solution()\n    result = sol.checkPerfectNumber(num)\n    print(result)"
+  }
+}

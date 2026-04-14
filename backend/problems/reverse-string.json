@@ -1,0 +1,46 @@
+{
+  "id": "reverse-string",
+  "title": "Reverse String",
+  "difficulty": "Easy",
+  "description": "Write a function that reverses a string. The input string is given as an array of characters `s`.\n\nYou must do this by modifying the input array in-place with O(1) extra memory.",
+  "constraints": [
+    "1 <= s.length <= 10^5",
+    "s[i] is a printable ascii character."
+  ],
+  "examples": [
+    {
+      "input": "s = [\"h\",\"e\",\"l\",\"l\",\"o\"]",
+      "output": "[\"o\",\"l\",\"l\",\"e\",\"h\"]"
+    },
+    {
+      "input": "s = [\"H\",\"a\",\"n\",\"n\",\"a\",\"h\"]",
+      "output": "[\"h\",\"a\",\"n\",\"n\",\"a\",\"H\"]"
+    }
+  ],
+  "testcases": [
+    {
+      "input": "hello",
+      "output": "olleh"
+    },
+    {
+      "input": "Hannah",
+      "output": "hannaH"
+    },
+    {
+      "input": "a",
+      "output": "a"
+    },
+    {
+      "input": "ab",
+      "output": "ba"
+    },
+    {
+      "input": "racecar",
+      "output": "racecar"
+    }
+  ],
+  "templates": {
+    "java": "import java.util.*;\n\nclass Solution {\n    public void reverseString(char[] s) {\n        // Your code here\n    }\n}\n\n// Driver code - DO NOT MODIFY\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String input = sc.nextLine();\n        char[] s = input.toCharArray();\n        \n        Solution sol = new Solution();\n        sol.reverseString(s);\n        System.out.println(new String(s));\n    }\n}",
+    "python": "class Solution:\n    def reverseString(self, s):\n        # Your code here\n        pass\n\n# Driver code - DO NOT MODIFY\nif __name__ == \"__main__\":\n    input_str = input().strip()\n    s = list(input_str)\n    \n    sol = Solution()\n    sol.reverseString(s)\n    print(''.join(s))"
+  }
+}

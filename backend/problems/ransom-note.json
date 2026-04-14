@@ -1,0 +1,42 @@
+{
+  "id": "ransom-note",
+  "title": "Ransom Note",
+  "difficulty": "Easy",
+  "description": "Given two strings ransomNote and magazine, return true if ransomNote can be constructed using the letters from magazine. Each letter in magazine can only be used once.",
+  "examples": [
+    {
+      "input": "\"a\"\n\"b\"",
+      "output": "false"
+    },
+    {
+      "input": "\"aa\"\n\"ab\"",
+      "output": "false"
+    },
+    {
+      "input": "\"aa\"\n\"aab\"",
+      "output": "true"
+    }
+  ],
+  "constraints": [
+    "1 <= ransomNote.length, magazine.length <= 10^5",
+    "ransomNote and magazine consist of lowercase English letters"
+  ],
+  "testcases": [
+    {
+      "input": "a\nb",
+      "output": "false"
+    },
+    {
+      "input": "aa\nab",
+      "output": "false"
+    },
+    {
+      "input": "aa\naab",
+      "output": "true"
+    }
+  ],
+  "templates": {
+    "java": "import java.util.*;\n\nclass Solution {\n    public boolean canConstruct(String ransomNote, String magazine) {\n        // Your code here\n        return false;\n    }\n}\n\n// Driver code - DO NOT MODIFY\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String ransomNote = sc.nextLine().trim();\n        String magazine = sc.nextLine().trim();\n        \n        Solution sol = new Solution();\n        boolean result = sol.canConstruct(ransomNote, magazine);\n        System.out.println(result);\n    }\n}",
+    "python": "class Solution:\n    def canConstruct(self, ransomNote, magazine):\n        # Your code here\n        return False\n\n# Driver code - DO NOT MODIFY\nif __name__ == \"__main__\":\n    ransomNote = input().strip()\n    magazine = input().strip()\n    sol = Solution()\n    result = sol.canConstruct(ransomNote, magazine)\n    print(result)"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "id": "word-pattern",
+  "title": "Word Pattern",
+  "difficulty": "Easy",
+  "description": "Given a pattern and a string s, determine if s follows the same pattern.",
+  "examples": [
+    {
+      "input": "abba\ndog cat cat dog",
+      "output": "true"
+    }
+  ],
+  "constraints": [
+    "1 <= pattern.length <= 300",
+    "pattern contains only lowercase English letters",
+    "1 <= s.length <= 3000",
+    "s contains only lowercase English letters and spaces"
+  ],
+  "testcases": [
+    {
+      "input": "abba\ndog cat cat dog",
+      "output": "true"
+    },
+    {
+      "input": "abba\ndog cat cat fish",
+      "output": "false"
+    },
+    {
+      "input": "aaaa\ndog cat cat dog",
+      "output": "false"
+    }
+  ],
+  "templates": {
+    "java": "import java.util.*;\n\nclass Solution {\n    public boolean wordPattern(String pattern, String s) {\n        // Your code here\n        return false;\n    }\n}\n\n// Driver code - DO NOT MODIFY\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String pattern = sc.nextLine().trim();\n        String s = sc.nextLine().trim();\n        \n        Solution sol = new Solution();\n        boolean result = sol.wordPattern(pattern, s);\n        System.out.println(result);\n    }\n}",
+    "python": "class Solution:\n    def wordPattern(self, pattern, s):\n        # Your code here\n        return False\n\n# Driver code - DO NOT MODIFY\nif __name__ == \"__main__\":\n    pattern = input().strip()\n    s = input().strip()\n    sol = Solution()\n    result = sol.wordPattern(pattern, s)\n    print(result)"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "id": "missing-number",
+  "title": "Missing Number",
+  "difficulty": "Easy",
+  "description": "Given an array nums containing n distinct numbers in the range [0, n], return the only number in the range that is missing from the array.",
+  "examples": [
+    {
+      "input": "[3,0,1]",
+      "output": "2"
+    },
+    {
+      "input": "[0,1]",
+      "output": "2"
+    },
+    {
+      "input": "[9,6,4,2,3,5,7,0,1]",
+      "output": "8"
+    }
+  ],
+  "constraints": [
+    "n == nums.length",
+    "1 <= n <= 10^4",
+    "0 <= nums[i] <= n",
+    "All the numbers of nums are unique"
+  ],
+  "testcases": [
+    {
+      "input": "[3,0,1]",
+      "output": "2"
+    },
+    {
+      "input": "[0,1]",
+      "output": "2"
+    },
+    {
+      "input": "[9,6,4,2,3,5,7,0,1]",
+      "output": "8"
+    }
+  ],
+  "templates": {
+    "java": "import java.util.*;\n\nclass Solution {\n    public int missingNumber(int[] nums) {\n        // Your code here\n        return 0;\n    }\n}\n\n// Driver code - DO NOT MODIFY\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String input = sc.nextLine().trim();\n        \n        input = input.substring(1, input.length() - 1);\n        int[] nums;\n        if (input.isEmpty()) {\n            nums = new int[0];\n        } else {\n            String[] parts = input.split(\",\");\n            nums = new int[parts.length];\n            for (int i = 0; i < parts.length; i++) {\n                nums[i] = Integer.parseInt(parts[i].trim());\n            }\n        }\n        \n        Solution sol = new Solution();\n        System.out.println(sol.missingNumber(nums));\n    }\n}",
+    "python": "class Solution:\n    def missingNumber(self, nums):\n        # Your code here\n        return 0\n\n# Driver code - DO NOT MODIFY\nif __name__ == \"__main__\":\n    nums_input = input().strip()\n    nums = list(map(int, nums_input[1:-1].split(','))) if nums_input != \"[]\" else []\n    sol = Solution()\n    result = sol.missingNumber(nums)\n    print(result)"
+  }
+}

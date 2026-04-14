@@ -1,0 +1,55 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: api-config
+data:
+  api-config.js: |
+    // Immediate execution to ensure it runs before React
+    (function() {
+      console.log('API Config loading - setting up fetch interceptor immediately');
+      
+      // Override fetch immediately
+      const originalFetch = window.fetch;
+      window.fetch = function(url, options) {
+        console.log('Fetch intercepted:', url);
+        
+        if (typeof url === 'string') {
+          // Handle all possible API URL patterns
+          if (url.includes('localhost:8000/api')) {
+            const newUrl = url.replace('http://localhost:8000/api', '/api');
+            console.log('Redirecting localhost:8000 from', url, 'to', newUrl);
+            url = newUrl;
+          } else if (url.includes('127.0.0.1:22328/api')) {
+            const newUrl = url.replace('http://127.0.0.1:22328/api', '/api');
+            console.log('Redirecting 127.0.0.1:22328 from', url, 'to', newUrl);
+            url = newUrl;
+          } else if (url.includes('127.0.0.1:62971/api')) {
+            const newUrl = url.replace('http://127.0.0.1:62971/api', '/api');
+            console.log('Redirecting 127.0.0.1:62971 from', url, 'to', newUrl);
+            url = newUrl;
+          } else if (url.startsWith('http://localhost:8000/')) {
+            const newUrl = url.replace('http://localhost:8000/', '/');
+            console.log('Redirecting localhost:8000 base from', url, 'to', newUrl);
+            url = newUrl;
+          } else if (url.startsWith('http://127.0.0.1:8000/')) {
+            const newUrl = url.replace('http://127.0.0.1:8000/', '/');
+            console.log('Redirecting 127.0.0.1:8000 from', url, 'to', newUrl);
+            url = newUrl;
+          } else if (url.includes('182.74.154.218:9000/api')) {
+            const newUrl = url.replace('http://182.74.154.218:9000/api', '/api');
+            console.log('Redirecting public IP backend from', url, 'to', newUrl);
+            url = newUrl;
+          } else if (url.includes('194.168.14.204:9000/api')) {
+            const newUrl = url.replace('http://194.168.14.204:9000/api', '/api');
+            console.log('Redirecting local IP backend from', url, 'to', newUrl);
+            url = newUrl;
+          } else if (url.includes('/api/')) {
+            console.log('Relative API call detected:', url);
+          }
+        }
+        
+        return originalFetch.call(this, url, options);
+      };
+      
+      console.log('Fetch interceptor installed immediately');
+    })();

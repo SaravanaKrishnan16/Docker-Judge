@@ -1,0 +1,42 @@
+DOCKERJUDGE RUNTIME LIMITS INCREASED
+=====================================
+
+The following timeout limits have been significantly increased to prevent "no output" issues:
+
+1. MAIN CONFIGURATION (config/limits.js):
+   - EXECUTION_TIMEOUT_MS: 300000ms → 600000ms (5min → 10min)
+   - OPTIMAL solutions: 1000ms → 10000ms (1s → 10s)
+   - ACCEPTABLE solutions: 3000ms → 30000ms (3s → 30s)
+   - BRUTE_FORCE solutions: 5000ms → 60000ms (5s → 60s)
+   - HARD_LIMIT: 10000ms → 120000ms (10s → 120s)
+   - MEMORY_LIMIT_MB: 2048MB → 4096MB (2GB → 4GB)
+
+2. LOCAL EXECUTOR (services/localExecutor.js):
+   - Java compilation timeout: 10000ms → 60000ms (10s → 60s)
+   - Java execution timeout: 5000ms → 120000ms (5s → 120s)
+   - Python execution timeout: 5000ms → 120000ms (5s → 120s)
+
+3. DOCKER EXECUTOR (services/dockerExecutor.js):
+   - Added proper timeout handling using HARD_LIMIT from config
+   - Compilation timeout: 60000ms (60s)
+   - Execution timeout: Uses HARD_LIMIT (120000ms = 120s)
+
+4. DOCKER SECURITY (utils/sandbox.js):
+   - Added memory limits: 4GB
+   - Added CPU limits: 1.0 core
+   - Added PID limits: 1024 processes
+   - Added network isolation
+   - Added read-only filesystem with tmpfs
+
+IMPACT:
+- Normal code execution: Up to 2 minutes per execution
+- Problem solving: Up to 2 minutes per test case
+- Total problem execution: Up to 10 minutes
+- Memory available: 4GB per execution
+
+These changes apply to:
+- /api/execute (normal compiler)
+- /api/submit (problem judging)
+- Both Docker and local execution modes
+
+To restart with new limits, run: restart.bat

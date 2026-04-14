@@ -1,0 +1,65 @@
+{
+  "id": "fibonacci-number",
+  "title": "Fibonacci Number",
+  "difficulty": "Easy",
+  "description": "The Fibonacci numbers form a sequence such that each number is the sum of the two preceding ones, starting from 0 and 1. Given n, return F(n).",
+  "examples": [
+    {
+      "input": "2",
+      "output": "1"
+    },
+    {
+      "input": "3",
+      "output": "2"
+    }
+  ],
+  "constraints": [
+    "0 <= n <= 30"
+  ],
+  "testcases": [
+    {
+      "input": "2",
+      "output": "1"
+    },
+    {
+      "input": "3",
+      "output": "2"
+    },
+    {
+      "input": "4",
+      "output": "3"
+    },
+    {
+      "input": "0",
+      "output": "0"
+    },
+    {
+      "input": "1",
+      "output": "1"
+    },
+    {
+      "input": "5",
+      "output": "5"
+    },
+    {
+      "input": "6",
+      "output": "8"
+    },
+    {
+      "input": "10",
+      "output": "55"
+    },
+    {
+      "input": "15",
+      "output": "610"
+    },
+    {
+      "input": "20",
+      "output": "6765"
+    }
+  ],
+  "templates": {
+    "java": "import java.util.*;\n\nclass Solution {\n    public int fib(int n) {\n        // Your code here\n        return 0;\n    }\n}\n\n// Driver code - DO NOT MODIFY\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        \n        Solution sol = new Solution();\n        System.out.println(sol.fib(n));\n    }\n}",
+    "python": "class Solution:\n    def fib(self, n):\n        # Your code here\n        return 0\n\n# Driver code - DO NOT MODIFY\nif __name__ == \"__main__\":\n    n = int(input().strip())\n    sol = Solution()\n    print(sol.fib(n))"
+  }
+}

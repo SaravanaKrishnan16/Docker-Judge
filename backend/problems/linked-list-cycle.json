@@ -1,0 +1,43 @@
+{
+  "id": "linked-list-cycle",
+  "title": "Linked List Cycle",
+  "difficulty": "Easy",
+  "description": "Given head, the head of a linked list, determine if the linked list has a cycle in it.",
+  "examples": [
+    {
+      "input": "[3,2,0,-4], pos = 1",
+      "output": "true"
+    },
+    {
+      "input": "[1,2], pos = 0",
+      "output": "true"
+    },
+    {
+      "input": "[1], pos = -1",
+      "output": "false"
+    }
+  ],
+  "constraints": [
+    "The number of nodes in the list is in the range [0, 10^4].",
+    "-10^5 <= Node.val <= 10^5",
+    "pos is -1 or a valid index in the linked list"
+  ],
+  "testcases": [
+    {
+      "input": "[3,2,0,-4]\n1",
+      "output": "true"
+    },
+    {
+      "input": "[1,2]\n0",
+      "output": "true"
+    },
+    {
+      "input": "[1]\n-1",
+      "output": "false"
+    }
+  ],
+  "templates": {
+    "java": "import java.util.*;\n\nclass ListNode {\n    int val;\n    ListNode next;\n    ListNode(int val) {\n        this.val = val;\n        this.next = null;\n    }\n}\n\nclass Solution {\n    public boolean hasCycle(ListNode head) {\n        // Your code here\n        return false;\n    }\n}\n\n// Driver code - DO NOT MODIFY\npublic class Main {\n    public static ListNode buildList(String input, int pos) {\n        if (input.equals(\"[]\")) return null;\n        \n        input = input.substring(1, input.length() - 1);\n        String[] parts = input.split(\",\");\n        ListNode dummy = new ListNode(0);\n        ListNode curr = dummy;\n        ListNode cycleNode = null;\n        \n        for (int i = 0; i < parts.length; i++) {\n            curr.next = new ListNode(Integer.parseInt(parts[i].trim()));\n            curr = curr.next;\n            if (i == pos) {\n                cycleNode = curr;\n            }\n        }\n        \n        if (pos != -1) {\n            curr.next = cycleNode;\n        }\n        \n        return dummy.next;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String listInput = sc.nextLine().trim();\n        int pos = sc.nextInt();\n        \n        ListNode head = buildList(listInput, pos);\n        Solution sol = new Solution();\n        boolean result = sol.hasCycle(head);\n        System.out.println(result);\n    }\n}",
+    "python": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\nclass Solution:\n    def hasCycle(self, head):\n        # Your code here\n        return False\n\n# Driver code - DO NOT MODIFY\ndef buildList(data, pos):\n    if data == \"[]\":\n        return None\n    values = data[1:-1].split(',')\n    dummy = ListNode(0)\n    curr = dummy\n    cycle_node = None\n    \n    for i, v in enumerate(values):\n        curr.next = ListNode(int(v.strip()))\n        curr = curr.next\n        if i == pos:\n            cycle_node = curr\n    \n    if pos != -1:\n        curr.next = cycle_node\n    \n    return dummy.next\n\nif __name__ == \"__main__\":\n    list_input = input().strip()\n    pos = int(input().strip())\n    head = buildList(list_input, pos)\n    sol = Solution()\n    result = sol.hasCycle(head)\n    print(result)"
+  }
+}

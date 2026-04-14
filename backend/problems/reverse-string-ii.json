@@ -1,0 +1,39 @@
+{
+  "id": "reverse-string-ii",
+  "title": "Reverse String II",
+  "difficulty": "Easy",
+  "description": "Given a string s and an integer k, reverse the first k characters for every 2k characters counting from the start of the string.",
+  "examples": [
+    {
+      "input": "abcdefg\n2",
+      "output": "bacdfeg"
+    },
+    {
+      "input": "abcd\n2",
+      "output": "bacd"
+    }
+  ],
+  "constraints": [
+    "1 <= s.length <= 10^4",
+    "s consists of only lowercase English letters",
+    "1 <= k <= 10^4"
+  ],
+  "testcases": [
+    {
+      "input": "abcdefg\n2",
+      "output": "bacdfeg"
+    },
+    {
+      "input": "abcd\n2",
+      "output": "bacd"
+    },
+    {
+      "input": "a\n2",
+      "output": "a"
+    }
+  ],
+  "templates": {
+    "java": "import java.util.*;\n\nclass Solution {\n    public String reverseStr(String s, int k) {\n        // Your code here\n        return \"\";\n    }\n}\n\n// Driver code - DO NOT MODIFY\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = sc.nextLine().trim();\n        int k = sc.nextInt();\n        \n        Solution sol = new Solution();\n        String result = sol.reverseStr(s, k);\n        System.out.println(result);\n    }\n}",
+    "python": "class Solution:\n    def reverseStr(self, s, k):\n        # Your code here\n        return \"\"\n\n# Driver code - DO NOT MODIFY\nif __name__ == \"__main__\":\n    s = input().strip()\n    k = int(input().strip())\n    sol = Solution()\n    result = sol.reverseStr(s, k)\n    print(result)"
+  }
+}

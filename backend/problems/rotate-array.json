@@ -1,0 +1,39 @@
+{
+  "id": "rotate-array",
+  "title": "Rotate Array",
+  "difficulty": "Medium",
+  "description": "Given an array nums, rotate the array to the right by k steps, where k is non-negative.",
+  "examples": [
+    {
+      "input": "[1,2,3,4,5,6,7]\n3",
+      "output": "[5,6,7,1,2,3,4]"
+    },
+    {
+      "input": "[-1,-100,3,99]\n2",
+      "output": "[3,99,-1,-100]"
+    }
+  ],
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "-2^31 <= nums[i] <= 2^31 - 1",
+    "0 <= k <= 10^5"
+  ],
+  "testcases": [
+    {
+      "input": "[1,2,3,4,5,6,7]\n3",
+      "output": "[5,6,7,1,2,3,4]"
+    },
+    {
+      "input": "[-1,-100,3,99]\n2",
+      "output": "[3,99,-1,-100]"
+    },
+    {
+      "input": "[1,2]\n1",
+      "output": "[2,1]"
+    }
+  ],
+  "templates": {
+    "java": "import java.util.*;\n\nclass Solution {\n    public void rotate(int[] nums, int k) {\n        // Your code here\n    }\n}\n\n// Driver code - DO NOT MODIFY\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String input = sc.nextLine().trim();\n        int k = sc.nextInt();\n        \n        input = input.substring(1, input.length() - 1);\n        int[] nums;\n        if (input.isEmpty()) {\n            nums = new int[0];\n        } else {\n            String[] parts = input.split(\",\");\n            nums = new int[parts.length];\n            for (int i = 0; i < parts.length; i++) {\n                nums[i] = Integer.parseInt(parts[i].trim());\n            }\n        }\n        \n        Solution sol = new Solution();\n        sol.rotate(nums, k);\n        System.out.println(Arrays.toString(nums));\n    }\n}",
+    "python": "class Solution:\n    def rotate(self, nums, k):\n        # Your code here\n        pass\n\n# Driver code - DO NOT MODIFY\nif __name__ == \"__main__\":\n    nums_input = input().strip()\n    k = int(input().strip())\n    nums = list(map(int, nums_input[1:-1].split(','))) if nums_input != \"[]\" else []\n    sol = Solution()\n    sol.rotate(nums, k)\n    print(nums)"
+  }
+}
